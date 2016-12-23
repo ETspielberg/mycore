@@ -176,11 +176,6 @@
   <profiles>
     <profile>
       <id>local-testing</id>
-      <activation>
-        <property>
-          <name>!remoteDriverURL</name>
-        </property>
-      </activation>
       <build>
         <plugins>
           <plugin>
