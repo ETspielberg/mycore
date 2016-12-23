@@ -1,5 +1,5 @@
 {
-  "name": "mets-editor-client",
+  "name": "mycore-mets-editor",
   "version": "0.0.2",
   "description": "The browser part of the mets-editor as a angular-js application.",
   "main": "Gruntfile.js",
