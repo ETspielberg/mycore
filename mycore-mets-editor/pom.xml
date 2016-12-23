@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.mycore.mets</groupId>
-  <artifactId>mets-editor-frontend</artifactId>
+  <artifactId>mycore-mets-editor</artifactId>
   <version>0.4-SNAPSHOT</version>
   <packaging>jar</packaging>
   <parent>
@@ -15,6 +15,7 @@
     <jetty.port>9301</jetty.port>
     <selenium.version>3.0.1</selenium.version>
     <TestResultDir>${project.build.directory}</TestResultDir>
+    <selenium-utils.version>0.5-SNAPSHOT</selenium-utils.version>
   </properties>
   <issueManagement>
     <system>JIRA</system>
@@ -66,12 +67,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-api</artifactId>
       <version>${selenium.version}</version>
@@ -84,7 +79,7 @@
     <dependency>
       <groupId>org.mycore</groupId>
       <artifactId>selenium-utils</artifactId>
-      <version>0.3</version>
+      <version>${selenium-utils.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -3,32 +3,40 @@
  */
 package org.mycore.mets.webtest;
 
+import org.junit.Test;
+import org.mycore.common.selenium.drivers.MCRWebdriverWrapper;
+import org.mycore.common.selenium.util.MCRBy;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
 /**
  * @author Sebastian Röher (basti890)
  *
  */
 public class PaginationIT extends MetsEditorTestBase {
-    /*
+
     @Test
     public void setPagination() {
         WebDriver webDriver = getDriver();
-        WebElement row = webDriver.findElement(MCRBy.textIgnoreCSS("perthes_1855_0001.jpg")).findElement(
+        WebElement row = webDriver.findElement(MCRBy.partialText("perthes_1855_0001.jpg")).findElement(
             By.xpath("ancestor::tr"));
         row.findElement(By.xpath("//button[@title=\"???editPagination???\"]")).click();
         row.findElement(By.xpath("//input")).sendKeys("test123");
         row.findElement(By.xpath("//button[@title=\"???paginationChange???\"]")).click();
-        row.findElement(MCRBy.textIgnoreCSS("test123"));
+        row.findElement(MCRBy.partialText("test123"));
     }
 
     @Test
     public void abortPagination() {
         MCRWebdriverWrapper webDriver = getDriver();
-        WebElement row = webDriver.waitAndFindElement(MCRBy.textIgnoreCSS("perthes_1855_0001.jpg")).findElement(
+        WebElement row = webDriver.waitAndFindElement(MCRBy.partialText("perthes_1855_0001.jpg")).findElement(
             By.xpath("ancestor::tr"));
         row.findElement(By.xpath("//button[@title=\"???editPagination???\"]")).click();
         row.findElement(By.xpath("//input")).sendKeys("test123");
         row.findElement(By.xpath("//button[@title=\"???paginationAbort???\"]")).click();
-        if (!row.findElements(MCRBy.textIgnoreCSS("test123")).isEmpty())
+        if (!row.findElements(MCRBy.partialText("test123")).isEmpty())
             throw new AssertionError("pagination should not be set!");
     }
 
@@ -38,58 +46,64 @@ public class PaginationIT extends MetsEditorTestBase {
         webDriver.waitAndFindElement(By.xpath("//button[@title=\"autoPagination\"]")).click();
 
         // wait for the Pagination-Dialog
-        waitForElement(MCRBy.textIgnoreCSS("???paginationValue???"));
-        webDriver.waitAndFindElement(MCRBy.textIgnoreCSS("undefined(1)"));
-        webDriver.waitAndFindElement(MCRBy.textIgnoreCSS("undefined(34)"));
+        waitForElement(MCRBy.partialText("???paginationValue???"));
+        webDriver.waitAndFindElement(MCRBy.partialText("undefined(1)"));
+        webDriver.waitAndFindElement(MCRBy.partialText("undefined(34)"));
         webDriver.waitAndFindElement(By.xpath("//input[@type=\"text\"]")).sendKeys("1v");
         Select select = new Select(webDriver.findElement(By.tagName("select")));
         select.selectByVisibleText("???rectoVerso_lowercase???");
         webDriver.waitAndFindElement(By.xpath("//button[contains(text(),\"???paginationChange???\")]")).click();
-        webDriver.waitAndFindElement(MCRBy.textIgnoreCSS("1v"));
-        webDriver.waitAndFindElement(MCRBy.textIgnoreCSS("18r"));
+        webDriver.waitAndFindElement(MCRBy.partialText("1v"));
+        webDriver.waitAndFindElement(MCRBy.partialText("18r"));
     }
 
-    @Test
+
+    /**
+     * Does not work (Actions) not supported
+     @Test
+     @Ignore
     public void autoPaginationFew() throws InterruptedException {
         WebDriver webDriver = getDriver();
-        WebElement row1 = webDriver.findElement(MCRBy.textIgnoreCSS("perthes_1855_0001.jpg")).findElement(
+        WebElement row1 = webDriver.findElement(MCRBy.partialText("perthes_1855_0001.jpg")).findElement(
             By.xpath("ancestor::td"));
         Actions shift = new Actions(webDriver);
-        WebElement row15 = webDriver.findElement(MCRBy.textIgnoreCSS("perthes_1855_0015.jpg")).findElement(
+        WebElement row15 = webDriver.findElement(MCRBy.partialText("perthes_1855_0015.jpg")).findElement(
             By.xpath("ancestor::td"));
         shift.click(row1).click(row1).keyDown(Keys.SHIFT).click(row15).keyUp(Keys.SHIFT).perform();
         webDriver.findElement(By.xpath("//button[@title=\"autoPagination\"]")).click();
         // wait for the Pagination-Dialog
-        waitForElement(MCRBy.textIgnoreCSS("???paginationValue???"));
-        webDriver.findElement(MCRBy.textIgnoreCSS("undefined(1)"));
-        webDriver.findElement(MCRBy.textIgnoreCSS("undefined(15)"));
-        if (!webDriver.findElements(MCRBy.textIgnoreCSS("undefined(34)")).isEmpty())
+        waitForElement(MCRBy.partialText("???paginationValue???"));
+        webDriver.findElement(MCRBy.partialText("undefined(1)"));
+        webDriver.findElement(MCRBy.partialText("undefined(15)"));
+        if (!webDriver.findElements(MCRBy.partialText("undefined(34)")).isEmpty())
             throw new AssertionError("to much elements for pagination selected!");
         webDriver.findElement(By.xpath("//input[@type=\"text\"]")).sendKeys("1v");
         Select select = new Select(webDriver.findElement(By.tagName("select")));
         select.selectByVisibleText("???rectoVerso_lowercase???");
         webDriver.findElement(By.xpath("//button[contains(text(),\"???paginationChange???\")]")).click();
-        webDriver.findElement(MCRBy.textIgnoreCSS("1v"));
-        webDriver.findElement(MCRBy.textIgnoreCSS("8v"));
+        webDriver.findElement(MCRBy.partialText("1v"));
+        webDriver.findElement(MCRBy.partialText("8v"));
     }
-
-    @Test
+     */
+   /* @Test
     public void deletePaginationFew() throws InterruptedException {
         WebDriver webDriver = getDriver();
         autoPaginationFew();
-        WebElement row = webDriver.findElement(MCRBy.textIgnoreCSS("1v")).findElement(By.xpath("ancestor::tr"));
+        WebElement row = webDriver.findElement(MCRBy.partialText("1v")).findElement(By.xpath("ancestor::tr"));
         row.findElement(By.xpath("//button[@title=\"???removePagination???\"]")).click();
-        if (!webDriver.findElements(MCRBy.textIgnoreCSS("1v")).isEmpty())
+        if (!webDriver.findElements(MCRBy.partialText("1v")).isEmpty())
             throw new AssertionError("Pagination has not been removed!");
-    }
+    }*/
 
+   /*
     @Test
     public void revertChange() throws InterruptedException {
         WebDriver webDriver = getDriver();
         deletePaginationFew();
         webDriver.findElement(By.xpath("//button[@title=\"???undo???\"]")).click();
-        webDriver.findElement(MCRBy.textIgnoreCSS("1v"));
+        webDriver.findElement(MCRBy.partialText("1v"));
     }
+    */
 
     //    TODO find a way to drag&drop the elements to test the sortation by hand
     //    @Test
@@ -103,5 +117,5 @@ public class PaginationIT extends MetsEditorTestBase {
     //        move.doubleClick(row1).clickAndHold(row1).moveToElement(rowToMove).release(row1).perform();
     //        Thread.sleep(100000);
     //    }
-*/
+
 }
