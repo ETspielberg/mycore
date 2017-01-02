@@ -1977,7 +1977,6 @@
     <module>mycore-media</module>
     <module>mycore-meta</module>
     <module>mycore-mets</module>
-    <module>mycore-mets-editor</module>
     <module>mycore-migration-2015</module>
     <module>mycore-mods</module>
     <module>mycore-oai</module>
