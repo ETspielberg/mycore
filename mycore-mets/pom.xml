@@ -65,6 +65,8 @@
       <groupId>org.mycore</groupId>
       <artifactId>mycore-iiif</artifactId>
       <optional>true</optional>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
     </dependency>
     <dependency>
       <groupId>org.mycore.mets</groupId>
