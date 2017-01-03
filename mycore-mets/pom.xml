@@ -120,11 +120,19 @@
           <webAppSourceDirectory>${basedir}/target/</webAppSourceDirectory>
           <scanIntervalSeconds>10</scanIntervalSeconds>
           <stopKey>foo</stopKey>
-          <stopPort>9302</stopPort>
+          <stopPort>9202</stopPort>
+          <webApp>
+            <webInfIncludeJarPattern>doNotIncludeAnyJarsPattern</webInfIncludeJarPattern>
+          </webApp>
           <systemProperties>
+            <force>true</force>
             <systemProperty>
               <name>jetty.port</name>
               <value>${jetty.port}</value>
+            </systemProperty>
+            <systemProperty>
+              <name>MCR.Persistence.Database.Enable</name>
+              <value>false</value>
             </systemProperty>
           </systemProperties>
         </configuration>
