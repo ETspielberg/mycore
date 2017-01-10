@@ -1,5 +1,6 @@
 ///<reference path="../../../../typings/angularjs/angular.d.ts"/>
 ///<reference path="MetsEditorConfiguration.ts"/>
+///<reference path="../state/StateEngine.ts"/>
 
 namespace org.mycore.mets.model {
     export class MetsEditorModel {
@@ -32,4 +33,3 @@ namespace org.mycore.mets.model {
 
     }
 }
-

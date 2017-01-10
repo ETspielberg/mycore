@@ -15,14 +15,14 @@ namespace org.mycore.mets.model.state {
         }
 
         private isPageLinked(root:simple.MCRMetsSection, page:simple.MCRMetsPage) {
-            var thisLinked = root.linkedPages.indexOf(page);
+            let thisLinked = root.linkedPages.indexOf(page);
             if (thisLinked) {
                 return true;
             }
 
-            for (var si in root.metsSectionList) {
-                var childSection = root.metsSectionList[ si ];
-                var childLinked = this.isPageLinked(childSection, page);
+            for (let si in root.metsSectionList) {
+                const childSection = root.metsSectionList[ si ];
+                const childLinked = this.isPageLinked(childSection, page);
                 if (childLinked) {
                     return true;
                 }
@@ -46,7 +46,7 @@ namespace org.mycore.mets.model.state {
         public unDoChange() {
             this.section.linkedPages.push(this.page);
             if (this.addedTo != null) {
-                var linkedPages = this.addedTo.linkedPages;
+                const linkedPages = this.addedTo.linkedPages;
                 linkedPages.splice(linkedPages.indexOf(this.page), 1);
             }
         }

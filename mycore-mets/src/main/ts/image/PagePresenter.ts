@@ -1,3 +1,7 @@
+///<reference path="../model/simple/MCRMetsPage.ts"/>
+///<reference path="../model/MetsEditorModel.ts"/>
+///<reference path="../model/simple/MCRMetsFile.ts"/>
+
 namespace org.mycore.mets.controller {
     import MCRMetsPage = org.mycore.mets.model.simple.MCRMetsPage;
     import MetsEditorModel = org.mycore.mets.model.MetsEditorModel;
@@ -15,12 +19,12 @@ namespace org.mycore.mets.controller {
         }
 
         public getPreviewURL(fileList:Array<MCRMetsFile>) {
-            var href = fileList.filter((f)=>f.use=="MASTER")[0].href;
+            const href = fileList.filter((f)=>f.use=="MASTER")[0].href;
             return this.urlPattern.replace("{image}", href).replace("{quality}", "MID");
         }
 
         public getImageURL(fileList:Array<MCRMetsFile>) {
-            var href = fileList.filter((f)=>f.use=="MASTER")[0].href;
+            const href = fileList.filter((f)=>f.use=="MASTER")[0].href;
             return this.urlPattern.replace("{image}", href).replace("{quality}", "MAX");
         }
 
@@ -30,6 +34,3 @@ namespace org.mycore.mets.controller {
 
 
 }
-
-angular.module("MetsEditorPresenterModule", [])
-    .controller("DefaultPagePresenter", org.mycore.mets.controller.DefaultPagePresenter);

@@ -8,13 +8,13 @@ namespace org.mycore.mets.model {
 
         private static
             suffixRegExprParsing = function rvBegin(label) {
-                var result = this.testExpr.exec(label);
+                const result = this.testExpr.exec(label);
                 return {page : parseInt(result[ 1 ], 10), appendix : result[ 2 ]};
             };
 
         private static
             fromToRegExprParsing = function fromTo(label) {
-                var result = this.testExpr.exec(label);
+                const result = this.testExpr.exec(label);
                 return {
                     fromRow : parseInt(result[ 1 ], 10),
                     toRow : parseInt(result[ 2 ], 10)
@@ -23,7 +23,7 @@ namespace org.mycore.mets.model {
 
         private static
             prefixRegExprParsing = function rvBegin(label) {
-                var result = this.testExpr.exec(label);
+                const result = this.testExpr.exec(label);
                 return {page : parseInt(result[ 2 ], 10), appendix : result[ 1 ]};
             };
 
@@ -35,7 +35,7 @@ namespace org.mycore.mets.model {
         };
 
         public static getPaginationMethodByName(name:string) {
-            var arrayOfMethodsWithName = Pagination.paginationMethods.filter((pm:PaginationMethod)=>pm.name == name);
+            const arrayOfMethodsWithName = Pagination.paginationMethods.filter((pm:PaginationMethod)=>pm.name == name);
             return arrayOfMethodsWithName[ 0 ];
         }
 
@@ -49,11 +49,11 @@ namespace org.mycore.mets.model {
                                  changedTo:string,
                                  method:PaginationMethod,
                                  reverse:boolean = false) {
-            var changedVal = method.getArabicPageNumber(changedTo);
-            var pagination = new Array<string>();
+            const changedVal = method.getArabicPageNumber(changedTo);
+            const pagination = new Array<string>();
 
-            for (var i = from; i <= to; i++) {
-                var relativeNumber = changedVal + (reverse ? -(i - changed) : (i - changed));
+            for (let i = from; i <= to; i++) {
+                const relativeNumber = changedVal + (reverse ? -(i - changed) : (i - changed));
                 pagination.push(method.paginate(relativeNumber));
             }
 
@@ -70,7 +70,7 @@ namespace org.mycore.mets.model {
                     return Math.ceil(nextPageNumber / 2) + (nextPageNumber % 2 == 1 ? "r" : "v" );
                 },
                 getArabicPageNumber : function (val) {
-                    var parsed = this.parseExpr(val);
+                    const parsed = this.parseExpr(val);
                     return parsed.page * 2 - (parsed.appendix == "r" ? 1 : 0);
                 }
             },
@@ -97,7 +97,7 @@ namespace org.mycore.mets.model {
                     return Math.ceil(nextPageNumber / 2) + (nextPageNumber % 2 == 1 ? "a" : "b" );
                 },
                 getArabicPageNumber : function (val) {
-                    var parsed = this.parseExpr(val);
+                    const parsed = this.parseExpr(val);
                     return parsed.page * 2 - (parsed.appendix == "a" ? 1 : 0);
                 }
             },
@@ -122,7 +122,7 @@ namespace org.mycore.mets.model {
                 },
                 paginate : function (arabic:number) {
                     // break down number into units, tens, hundreds, thousands
-                    var digits = String(+arabic).split(""),
+                    let digits = String(+arabic).split(""),
                         count = 3,
                         roman = "";
 
@@ -140,7 +140,7 @@ namespace org.mycore.mets.model {
 
                     // now deal with thousands, if required. If we have an array element left, this represents the thousands. We
                     // need an M for each thousand
-                    var thousands = digits.pop();
+                    let thousands = digits.pop();
                     if (thousands) {
                         // convert int to array and join. Add 1 to int to create array of correct length
                         roman = new Array(+thousands + 1).join("M") + roman;
@@ -150,8 +150,8 @@ namespace org.mycore.mets.model {
 
                 },
                 getArabicPageNumber : function (rome:string) {
-                    var token = /[mdlv]|c[md]?|x[cl]?|i[xv]?/g;
-                    var key = {
+                    const token = /[mdlv]|c[md]?|x[cl]?|i[xv]?/g;
+                    const key = {
                         m : 1000,
                         cm : 900,
                         d : 500,
@@ -166,8 +166,8 @@ namespace org.mycore.mets.model {
                         iv : 4,
                         i : 1
                     };
-                    var num = 0;
-                    var m;
+                    let num = 0;
+                    let m;
 
                     if (!this.testExpr.test(rome)) {
                         return null;
@@ -189,7 +189,7 @@ namespace org.mycore.mets.model {
                 },
                 paginate : function (arabic:number) {
                     // break down number into units, tens, hundreds, thousands
-                    var digits = String(+arabic).split(""),
+                    let digits = String(+arabic).split(""),
                         count = 3,
                         roman = "";
 
@@ -207,7 +207,7 @@ namespace org.mycore.mets.model {
 
                     // now deal with thousands, if required. If we have an array element left, this represents the thousands. We
                     // need an M for each thousand
-                    var thousands = digits.pop();
+                    let thousands = digits.pop();
                     if (thousands) {
                         // convert int to array and join. Add 1 to int to create array of correct length
                         roman = new Array(+thousands + 1).join("M") + roman;
@@ -217,8 +217,8 @@ namespace org.mycore.mets.model {
 
                 },
                 getArabicPageNumber : function (rome:string) {
-                    var token = /[MDLV]|C[MD]?|X[CL]?|I[XV]?/g;
-                    var key = {
+                    const token = /[MDLV]|C[MD]?|X[CL]?|I[XV]?/g;
+                    const key = {
                         M : 1000,
                         CM : 900,
                         D : 500,
@@ -233,8 +233,8 @@ namespace org.mycore.mets.model {
                         IV : 4,
                         I : 1
                     };
-                    var num = 0;
-                    var m;
+                    let num = 0;
+                    let m;
 
                     if (!this.testExpr.test(rome)) {
                         return null;
@@ -251,9 +251,9 @@ namespace org.mycore.mets.model {
                 testExpr : /^Sp\. ([0-9]+)-([0-9]+)$/,
                 test : Pagination.regExpTestMethod,
                 getArabicPageNumber : function (pageFromTo) {
-                    var fromToRegExprParsing = Pagination.fromToRegExprParsing.apply(this, [pageFromTo]);
-                    var rowsPerPage = (fromToRegExprParsing.toRow - fromToRegExprParsing.fromRow) + 1;
-                    var actualPageNumber = fromToRegExprParsing.toRow / rowsPerPage;
+                    const fromToRegExprParsing = Pagination.fromToRegExprParsing.apply(this, [pageFromTo]);
+                    const rowsPerPage = (fromToRegExprParsing.toRow - fromToRegExprParsing.fromRow) + 1;
+                    const actualPageNumber = fromToRegExprParsing.toRow / rowsPerPage;
 
                     if (rowsPerPage != 2) {
                         throw `rowsPerPage must be 2 (${rowsPerPage})`;

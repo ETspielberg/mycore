@@ -13,6 +13,3 @@ namespace org.mycore.mets.controller {
 
     }
 }
-
-angular.module("ErrorModal", [ "ui.bootstrap", "MetsEditorI18NModel" ]).controller("ErrorModalController",
-    ["$scope", "$modalInstance", "MetsEditorI18NModel", org.mycore.mets.controller.ErrorModalController]);

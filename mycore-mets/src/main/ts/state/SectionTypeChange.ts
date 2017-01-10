@@ -19,7 +19,7 @@ namespace org.mycore.mets.model.state {
         }
 
         public getDescription(messages:any):string {
-            var description = messages["SectionTypeChangeDescription"] || "???SectionTypeChangeDescription??? {from} {to} {obj}";
+            const description = messages["SectionTypeChangeDescription"] || "???SectionTypeChangeDescription??? {from} {to} {obj}";
             return description.replace("{from}", this.from).replace("{to}", this.to).replace("{obj}", this.section.label);
         }
     }

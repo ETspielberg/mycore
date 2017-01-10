@@ -40,7 +40,7 @@ namespace org.mycore.mets.model.simple {
         }
 
         private addSectionPosition(section:MCRMetsSection, sectionToAdd:MCRMetsSection, position:string) {
-            var index = this.metsSectionList.indexOf(sectionToAdd);
+            const index = this.metsSectionList.indexOf(sectionToAdd);
             if (index == -1) {
                 throw `Cannot insert section  ${section.label} ${position} ${sectionToAdd.label}` +
                 `in parent ${this.label} because ${sectionToAdd.label} is not in this.label`;

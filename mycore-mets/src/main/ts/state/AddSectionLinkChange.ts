@@ -13,7 +13,7 @@ namespace org.mycore.mets.model.state {
 
 
         public findParentWithLink(section = this.section):{pos:number; parentSection:MCRMetsSection} {
-            var pos = section.linkedPages.indexOf(this.page);
+            const pos = section.linkedPages.indexOf(this.page);
             if (pos!=-1) {
                 return {pos : pos, parentSection:section};
             } else if (section.parent == null) {

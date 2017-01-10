@@ -20,7 +20,7 @@ namespace org.mycore.mets.model.state {
         private targetLabel:string;
 
         public doChange() {
-            var realTargetSection = this.getRealTargetSection();
+            const realTargetSection = this.getRealTargetSection();
             this.section.parent.removeSection(this.section);
 
             switch (this.target.position) {
@@ -46,8 +46,8 @@ namespace org.mycore.mets.model.state {
         }
 
         public getDescription(messages:any):string {
-            var targetPos = messages[ this.target.position ] || this.target.position;
-            var description = messages[ "SectionMoveChangeDescription" ] ||
+            const targetPos = messages[ this.target.position ] || this.target.position;
+            const description = messages[ "SectionMoveChangeDescription" ] ||
                 "???SectionMoveChangeDescription??? {prevParent} {realTarget} {targetPos} {targetLabel}";
             return description
                 .replace("{prevParent}", this.previousParentLabel)

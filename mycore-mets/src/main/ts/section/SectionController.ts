@@ -12,6 +12,8 @@
 ///<reference path="../state/ModelChange.ts"/>
 ///<reference path="../state/AddSectionLinkChange.ts"/>
 ///<reference path="../state/BatchChange.ts"/>
+///<reference path="SectionEvents.ts"/>
+
 namespace org.mycore.mets.controller {
 
     import MetsEditorModel = org.mycore.mets.model.MetsEditorModel;
@@ -70,15 +72,15 @@ namespace org.mycore.mets.controller {
         }
 
         public editTypeChange() {
-            var newType = this.edit.type;
-            var sectionTypeChange = new SectionTypeChange(this.section, newType, this.section.type);
+            const newType = this.edit.type;
+            const sectionTypeChange = new SectionTypeChange(this.section, newType, this.section.type);
             this.stateEngine.changeModel(sectionTypeChange);
         }
 
         public editLabelKeyUp(keyEvent:JQueryKeyEventObject) {
             switch (keyEvent.keyCode) {
                 case 13: // enter
-                    var sectionLabelChange = new SectionLabelChange(this.section, this.edit.label, this.section.label);
+                    const sectionLabelChange = new SectionLabelChange(this.section, this.edit.label, this.section.label);
                     this.stateEngine.changeModel(sectionLabelChange);
                     this.edit.label = null;
                     break;
@@ -103,8 +105,8 @@ namespace org.mycore.mets.controller {
         public clickAddSection(clickEvent:JQueryMouseEventObject) {
             clickEvent.stopPropagation();
 
-            var newCreatedSection = new MCRMetsSection(MCRMetsSection.createRandomId(), this.structureSet[ 0 ].id, "new");
-            var sectionAddChange = new SectionAddChange(newCreatedSection, this.section);
+            const newCreatedSection = new MCRMetsSection(MCRMetsSection.createRandomId(), this.structureSet[ 0 ].id, "new");
+            const sectionAddChange = new SectionAddChange(newCreatedSection, this.section);
             this.stateEngine.changeModel(sectionAddChange);
             this.$scope.$emit("AddedSection", <SectionAdded>{
                 parent : this.section,
@@ -144,9 +146,9 @@ namespace org.mycore.mets.controller {
 
         public getPageChildren() {
 
-            var indexLookup = {};
+            let indexLookup = {};
             this.section.linkedPages.forEach((element)=> {
-                var index = this.simpleModel.metsPageList.indexOf(element);
+                const index = this.simpleModel.metsPageList.indexOf(element);
                 indexLookup[ element.id ] = index;
             });
 
@@ -175,13 +177,13 @@ namespace org.mycore.mets.controller {
         }
 
         public childHasLink(curChild:MCRMetsSection, page:MCRMetsPage) {
-            var thisHasChild = curChild.linkedPages.indexOf(page) != -1;
+            const thisHasChild = curChild.linkedPages.indexOf(page) != -1;
 
             if (thisHasChild) {
                 return true;
             }
 
-            for (var cur in curChild.metsSectionList) {
+            for (let cur in curChild.metsSectionList) {
                 if (this.childHasLink(curChild.metsSectionList[ cur ], page)) {
                     return true;
                 }
@@ -191,9 +193,9 @@ namespace org.mycore.mets.controller {
         }
 
         public link() {
-            var change:ModelChange;
+            let change:ModelChange;
 
-            var changes = this.getNotLinkedFromSelection(this.section).map((page)=> {
+            let changes = this.getNotLinkedFromSelection(this.section).map((page)=> {
                 return new AddSectionLinkChange(this.section, page);
             });
 
@@ -209,14 +211,14 @@ namespace org.mycore.mets.controller {
         }
 
         public getNotLinkedFromSelection(section:MCRMetsSection) {
-            var hasLink = (s:MCRMetsSection, p)=> {
-                var linkedPageIndex = s.linkedPages.indexOf(p);
+            const hasLink = (s:MCRMetsSection, p)=> {
+                const linkedPageIndex = s.linkedPages.indexOf(p);
                 if (linkedPageIndex >= 0) {
                     return linkedPageIndex >= 0;
                 }
-                for (var csi in s.metsSectionList) {
-                    var cs = s.metsSectionList[ csi ];
-                    var has = hasLink(cs, p);
+                for (let csi in s.metsSectionList) {
+                    const cs = s.metsSectionList[ csi ];
+                    const has = hasLink(cs, p);
                     if (has) {
                         return true;
                     }
@@ -236,14 +238,4 @@ namespace org.mycore.mets.controller {
         }
     }
 }
-{
-    let sectionModule = angular.module("MetsEditorSectionModule", [ "MetsEditorI18NModel", "StructureSetConfiguration" ]);
-    sectionModule.controller("SectionController",
-        [
-            "$scope",
-            "MetsEditorI18NModel",
-            "StructureSet",
-            "$timeout",
-            org.mycore.mets.controller.SectionController
-        ]);
-}
+

@@ -16,9 +16,8 @@ namespace org.mycore.mets.model {
         }
 
         save(url:string, model:MetsModel, callBack:(success:boolean)=>void) {
-            var jsonData = MetsModel.toJson(model);
-            console.log(jsonData);
-            var promise = this.httpService.post(url, jsonData);
+            const jsonData = MetsModel.toJson(model);
+            const promise = this.httpService.post(url, jsonData);
 
             promise.success(() => {
                 callBack(true);
@@ -31,5 +30,3 @@ namespace org.mycore.mets.model {
     }
 }
 
-angular.module("MetsModelSaveService", []).service("MetsModelSaveService",
-    [ "$http", ($http)=> new org.mycore.mets.model.MetsModelSave($http) ]);

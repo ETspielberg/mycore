@@ -36,12 +36,12 @@ namespace org.mycore.mets.controller {
         }
 
         private changeLabel(to:string) {
-            var change = new org.mycore.mets.model.state.PageLabelChange(this.page, to, this.page.orderLabel);
+            const change = new org.mycore.mets.model.state.PageLabelChange(this.page, to, this.page.orderLabel);
             this.stateMachine.changeModel(change);
         }
 
         public removePagination(me:JQueryMouseEventObject){
-            var pageLabelChange = new org.mycore.mets.model.state.PageLabelChange(this.page, null, this.page.orderLabel);
+            let pageLabelChange = new org.mycore.mets.model.state.PageLabelChange(this.page, null, this.page.orderLabel);
             this.stateMachine.changeModel(pageLabelChange);
             me.preventDefault();
             me.stopImmediatePropagation();
@@ -115,5 +115,3 @@ namespace org.mycore.mets.controller {
     }
 }
 
-angular.module("MetsEditorApp").controller("MetsEditorPageController",
-    [ "MetsEditorI18NModel", org.mycore.mets.controller.PageController ]);

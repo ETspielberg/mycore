@@ -33,7 +33,7 @@ namespace org.mycore.mets.controller {
         }
 
         public openPaginationModal(begin = 0, method = model.Pagination.paginationMethods[ 0 ], value = "") {
-            var options = {
+            const options = {
                 templateUrl : "pageList/paginationModal.html",
                 controller : "PaginationModalController",
                 size : "lg"
@@ -62,6 +62,3 @@ namespace org.mycore.mets.controller {
     }
 }
 
-angular.module("MetsEditorApp")
-    .controller("MetsEditorPaginationController",
-    [ "$modal", "MetsEditorI18NModel", "hotkeys", org.mycore.mets.controller.PaginationController ]);

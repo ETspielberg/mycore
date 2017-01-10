@@ -24,7 +24,7 @@ namespace org.mycore.mets.controller.Pagination {
         private changes = new Array<{oldLabel:string;newLabel:string;page:org.mycore.mets.model.simple.MCRMetsPage}>();
 
         public doChanges() {
-            var changesLeft = true;
+            let changesLeft = true;
 
             while (changesLeft) {
                 changesLeft = this.changes.pop() != null;
@@ -34,9 +34,9 @@ namespace org.mycore.mets.controller.Pagination {
         }
 
         public changeType() {
-            var value = this.model.value;
+            const value = this.model.value;
             if (value != null) {
-                var newMethod = org.mycore.mets.model.Pagination.detectPaginationMethodByPageLabel(value);
+                const newMethod = org.mycore.mets.model.Pagination.detectPaginationMethodByPageLabel(value);
                 if (newMethod != null) {
                     this.model.method = newMethod;
                 }
@@ -48,7 +48,7 @@ namespace org.mycore.mets.controller.Pagination {
         }
 
         public calculateChanges(replaceOldLabel = true) {
-            var changes;
+            let changes;
             if (this.model.method != null && this.model.method.test(this.model.value)) {
                 changes = org.mycore.mets.model.Pagination.getChanges(
                     0,
@@ -63,10 +63,10 @@ namespace org.mycore.mets.controller.Pagination {
             }
 
             return this.model.selectedPages.map((page:org.mycore.mets.model.simple.MCRMetsPage, index:number)=> {
-                var oldLabel;
+                let oldLabel;
                 if (replaceOldLabel) {
-                    var pageNumber = (this.model.selectedPagesIndex + 1 + index);
-                    var alternativeLabel = (this.model.messages[ "noOrderLabel" ] + "(" + pageNumber + ")");
+                    const pageNumber = (this.model.selectedPagesIndex + 1 + index);
+                    const alternativeLabel = (this.model.messages[ "noOrderLabel" ] + "(" + pageNumber + ")");
                     oldLabel = page.orderLabel || alternativeLabel;
                 } else {
                     oldLabel = page.orderLabel;
@@ -94,5 +94,3 @@ namespace org.mycore.mets.controller.Pagination {
 }
 
 
-angular.module("MetsEditorApp")
-    .controller("PaginationModalController", ["$scope",  "$modalInstance",org.mycore.mets.controller.Pagination.PaginationModalController]);

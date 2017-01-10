@@ -23,5 +23,4 @@ namespace org.mycore.mets.controller {
 }
 
 
-angular.module("MetsEditorApp").controller("MetsEditorChangeListController",
-    ["$scope", "$modalInstance", "MetsEditorI18NModel",org.mycore.mets.controller.MetsEditorChangeListController]);
+

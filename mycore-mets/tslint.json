@@ -16,6 +16,7 @@
       "timeEnd",
       "trace"
     ],
+    "no-var-keyword": true,
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-variable": true,

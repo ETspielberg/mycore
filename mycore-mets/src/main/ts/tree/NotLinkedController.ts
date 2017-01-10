@@ -22,9 +22,9 @@ namespace org.mycore.mets.controller {
         }
 
         public getNotLinkedPages() {
-            var linkedPages = [];
+            let linkedPages = [];
 
-            var addLinkedPages = (section:MCRMetsSection)=> {
+            const addLinkedPages = (section:MCRMetsSection)=> {
                 section.linkedPages.forEach((p:MCRMetsPage)=> {
                     linkedPages[p.id] = true;
                 });
@@ -44,6 +44,4 @@ namespace org.mycore.mets.controller {
     }
 }
 
-angular.module("MetsEditorApp")
-    .controller("NotLinkedController", [ org.mycore.mets.controller.NotLinkedController ]);
 

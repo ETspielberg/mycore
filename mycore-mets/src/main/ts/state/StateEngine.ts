@@ -24,7 +24,7 @@ namespace org.mycore.mets.model.state {
             if (!this.canBack()) {
                 throw "privateLastChanges is empty!";
             } else {
-                var lastChange = this.privateLastChanges.pop();
+                const lastChange = this.privateLastChanges.pop();
                 lastChange.unDoChange();
                 this.privateRevertedChanges.push(lastChange);
             }
@@ -39,7 +39,7 @@ namespace org.mycore.mets.model.state {
             if (!this.canForward()) {
                 throw "privateRevertedChanges is empty!";
             } else {
-                var lastRevertedChange = this.privateRevertedChanges.pop();
+                const lastRevertedChange = this.privateRevertedChanges.pop();
                 lastRevertedChange.doChange();
                 this.privateLastChanges.push(lastRevertedChange);
             }
@@ -58,7 +58,7 @@ namespace org.mycore.mets.model.state {
         }
 
         private getLastChange() {
-            var lastChanges = this.getLastChanges();
+            const lastChanges = this.getLastChanges();
             if(lastChanges.length==0){
                 return null;
             }

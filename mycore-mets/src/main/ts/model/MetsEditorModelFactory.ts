@@ -21,7 +21,7 @@ module org.mycore.mets.model {
         private metsEditorConfiguration:MetsEditorConfiguration;
 
         public getInstance(metsEditorParameter:MetsEditorParameter):MetsEditorModel {
-            var metsEditorModel = new MetsEditorModel(this.metsEditorConfiguration);
+            let metsEditorModel = new MetsEditorModel(this.metsEditorConfiguration);
 
             metsEditorModel.metsId = metsEditorParameter.metsId;
             metsEditorModel.targetServlet = metsEditorParameter.targetServletURL;
@@ -38,11 +38,3 @@ module org.mycore.mets.model {
     }
 }
 
-angular.module("MetsEditorModelFactory", [ "MetsModelLoaderService", "MetsEditorConfiguration" ])
-    .service("MetsEditorModelFactory",
-    [ "MetsModelLoaderService",
-        "MetsEditorConfiguration",
-        (modelLoader:org.mycore.mets.model.MetsModelLoader,
-         editorConfiguration:MetsEditorConfiguration)=>
-            new org.mycore.mets.model.MetsEditorModelFactory(modelLoader, editorConfiguration) ]
-);

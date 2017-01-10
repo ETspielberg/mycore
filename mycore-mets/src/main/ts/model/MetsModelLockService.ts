@@ -17,7 +17,7 @@ namespace org.mycore.mets.model {
 
         lock(lockURL:string, callBack:(success:boolean)=>void) {
             if(typeof lockURL != "undefined" && lockURL !== null){
-                var promise = this.httpService.get(lockURL);
+                const promise = this.httpService.get(lockURL);
 
                 promise.success((data) => {
                     callBack(data.success || false);
@@ -33,11 +33,10 @@ namespace org.mycore.mets.model {
 
         unlock(unLockURL){
             if(typeof unLockURL != "undefined" && unLockURL !== null){
-                var promise = this.httpService.get(unLockURL);
+                const promise = this.httpService.get(unLockURL);
             }
         }
     }
 }
 
-angular.module("MetsModelLockService", []).service("MetsModelLockService",
-    [ "$http", ($http)=> new org.mycore.mets.model.MetsModelLock($http) ]);
+

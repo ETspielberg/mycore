@@ -18,7 +18,7 @@ namespace org.mycore.mets.model.state {
         }
 
         public getDescription(messages:any):string {
-            var description = messages["SectionAddDescription"] || "???SectionAddDescription??? {new} {parent}";
+            const description = messages["SectionAddDescription"] || "???SectionAddDescription??? {new} {parent}";
             return description.replace("{new}", this.label).replace("{parent}", this.parentLabel);
         }
     }

@@ -38,7 +38,7 @@ namespace org.mycore.mets.model.state {
         }
 
         public getDescription(messages:any):string {
-            var description = messages[ "SectionDeleteDescription" ] || "???SectionDeleteDescription??? {toDelete} {parent}";
+            const description = messages[ "SectionDeleteDescription" ] || "???SectionDeleteDescription??? {toDelete} {parent}";
             return description.replace("{toDelete}", this.deleteLabel).replace("{parent}", this.parentLabel);
         }
     }

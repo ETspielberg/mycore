@@ -1464,15 +1464,15 @@ grunt-contrib-less@^1.0.0:
     less "~2.7.1"
     lodash "^4.8.2"
 
-grunt-contrib-uglify@^0.9.1:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/grunt-contrib-uglify/-/grunt-contrib-uglify-0.9.2.tgz#1a61c6f212410e4abb4f7c89153717b101560260"
+grunt-contrib-uglify@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/grunt-contrib-uglify/-/grunt-contrib-uglify-2.0.0.tgz#8c9970d690936cde6d25aa1193549bd929016930"
   dependencies:
     chalk "^1.0.0"
-    lodash "^3.2.0"
-    maxmin "^1.0.0"
-    uglify-js "^2.4.24"
-    uri-path "0.0.2"
+    lodash.assign "^4.0.9"
+    maxmin "^1.1.0"
+    uglify-js "~2.7.0"
+    uri-path "^1.0.0"
 
 grunt-contrib-watch@^0.6.1:
   version "0.6.1"
@@ -2154,6 +2154,10 @@ lodash._objecttypes@~2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/lodash._objecttypes/-/lodash._objecttypes-2.4.1.tgz#7c0b7f69d98a1f76529f890b0cdb1b4dfec11c11"
 
+lodash.assign@^4.0.9:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
+
 lodash.debounce@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-2.4.1.tgz#d8cead246ec4b926e8b85678fc396bfeba8cc6fc"
@@ -2177,10 +2181,6 @@ lodash.now@~2.4.1:
   resolved "https://registry.yarnpkg.com/lodash.now/-/lodash.now-2.4.1.tgz#6872156500525185faf96785bb7fe7fe15b562c6"
   dependencies:
     lodash._isnative "~2.4.1"
-
-lodash@^3.2.0:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
 lodash@^4.0.0, lodash@^4.17.4:
   version "4.17.4"
@@ -2255,7 +2255,7 @@ marked@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
-maxmin@^1.0.0:
+maxmin@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/maxmin/-/maxmin-1.1.0.tgz#71365e84a99dd8f8b3f7d5fde2f00d1e7f73be61"
   dependencies:
@@ -3758,7 +3758,7 @@ typescript@1.8.10:
   version "1.8.10"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-1.8.10.tgz#b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e"
 
-uglify-js@^2.4.24, uglify-js@^2.6:
+uglify-js@^2.6, uglify-js@~2.7.0:
   version "2.7.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
   dependencies:
@@ -3889,9 +3889,9 @@ upper-case@^1.0.0, upper-case@^1.0.3, upper-case@^1.1.0, upper-case@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
 
-uri-path@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/uri-path/-/uri-path-0.0.2.tgz#803eb01f2feb17927dcce0f6187e72b75f53f554"
+uri-path@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/uri-path/-/uri-path-1.0.0.tgz#9747f018358933c31de0fccfd82d138e67262e32"
 
 uri-templates@0.1.2:
   version "0.1.2"

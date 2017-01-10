@@ -64,12 +64,12 @@ namespace org.mycore.mets.controller {
         }
 
         public getChildren(child:any) {
-            var childList = child[ this.privateChildFieldName ];
+            const childList = child[ this.privateChildFieldName ];
             return childList;
         }
 
         public getChildrenCount(child:any) {
-            var length = this.getChildren(child).length;
+            const length = this.getChildren(child).length;
             return length;
         }
 
@@ -84,7 +84,7 @@ namespace org.mycore.mets.controller {
         }
 
         public dropSuccess(target:DropTarget, sourceElement:MCRMetsSection, event:JQueryEventObject) {
-            var realTargetElement;
+            let realTargetElement;
 
             if (target.position == "after" || target.position == "before") {
                 realTargetElement = target.element[ this.privateParentFieldName ];
@@ -97,7 +97,7 @@ namespace org.mycore.mets.controller {
             }
 
             if (!this.checkConsistent(realTargetElement, sourceElement) && target.element) {
-                var options = {
+                const options = {
                     templateUrl : "error/modal.html",
                     controller : "ErrorModalController",
                     size : "lg"
@@ -109,7 +109,7 @@ namespace org.mycore.mets.controller {
                     this.messageModel.messages[ "errorMoveChildMessage" ] || "???errorMoveChildMessage???",
                     this.metsConfiguration.resources + "img/move_parent_to_child.png"
                 );
-                var emptyCallback = () => {
+                const emptyCallback = () => {
                     //do nothing
                 };
                 this.privateErrorModal.result.then(emptyCallback, emptyCallback);
@@ -117,7 +117,7 @@ namespace org.mycore.mets.controller {
                 return true;
             }
 
-            var sectionMoveChange = new org.mycore.mets.model.state.SectionMoveChange(sourceElement, target);
+            const sectionMoveChange = new org.mycore.mets.model.state.SectionMoveChange(sourceElement, target);
             this.stateEngine.changeModel(sectionMoveChange);
 
             return true;
@@ -134,13 +134,6 @@ namespace org.mycore.mets.controller {
 }
 
 
-angular.module("MetsEditorApp")
-    .controller("MetsEditorTreeController",
-    [ "$scope",
-        "MetsEditorI18NModel",
-        "ngDraggable",
-        "$modal",
-        "MetsEditorConfiguration",
-        org.mycore.mets.controller.MCRTreeController ]);
+
 
 

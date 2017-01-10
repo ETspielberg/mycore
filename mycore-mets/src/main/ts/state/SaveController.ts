@@ -33,9 +33,3 @@ namespace org.mycore.mets.model.state {
 
     }
 }
-
-{
-    let saveController = angular.module("MetsEditorApp");
-    saveController.controller("SaveController",
-        [ "MetsEditorI18NModel", "MetsModelSaveService", org.mycore.mets.model.state.SaveController ]);
-}

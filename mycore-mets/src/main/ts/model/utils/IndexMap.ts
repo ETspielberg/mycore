@@ -9,9 +9,9 @@ module org.mycore.mets.model {
         private privateMapObject:{ [index: string]: Entry<T1,T2>; };
 
         public forEach(fn:(k:T1, v:T2)=>void) {
-            for (var keyString in this.privateMapObject) {
+            for (let keyString in this.privateMapObject) {
                 if (this.privateMapObject.hasOwnProperty(keyString)) {
-                    var entry = this.privateMapObject[ keyString ];
+                    let entry = this.privateMapObject[ keyString ];
                     fn(entry.key, entry.value);
                 }
             }
@@ -34,8 +34,8 @@ module org.mycore.mets.model {
         }
 
         public getCount():number {
-            var count = 0;
-            for (var i in this.privateMapObject) {
+            let count = 0;
+            for (let i in this.privateMapObject) {
                 if (this.privateMapObject.hasOwnProperty(i)) {
                     count++;
                 }

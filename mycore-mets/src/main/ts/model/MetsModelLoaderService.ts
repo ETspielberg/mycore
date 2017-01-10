@@ -9,7 +9,7 @@ namespace org.mycore.mets.model {
         }
 
         load(url:string, callBack:(model:MetsModel)=>void) {
-            var promise = this.httpService.get(url);
+            const promise = this.httpService.get(url);
 
             promise.success((metsData) => {
                 callBack(MetsModel.fromJson(metsData));
@@ -22,5 +22,3 @@ namespace org.mycore.mets.model {
     }
 }
 
-angular.module("MetsModelLoaderService", []).service("MetsModelLoaderService",
-    ["$http", ($http)=> new org.mycore.mets.model.MetsModelLoader($http) ]);

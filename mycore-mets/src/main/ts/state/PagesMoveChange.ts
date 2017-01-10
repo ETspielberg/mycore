@@ -1,4 +1,5 @@
 ///<reference path="ModelChange.ts"/>
+///<reference path="../model/simple/MCRMetsPage.ts"/>
 namespace org.mycore.mets.model.state {
     export class PagesMoveChange extends ModelChange {
 
@@ -7,7 +8,7 @@ namespace org.mycore.mets.model.state {
                     private moveTo:PagesMoveChangeDestination) {
             super();
 
-            var moveFromIndex = this.pageList.indexOf(range.from);
+            const moveFromIndex = this.pageList.indexOf(range.from);
             if (moveFromIndex > 0) {
                 this.moveFrom = {
                     before : false,
@@ -20,7 +21,7 @@ namespace org.mycore.mets.model.state {
                 };
             }
 
-            var alternativeLabel = (range.from.fileList.length > 0) ?
+            let alternativeLabel = (range.from.fileList.length > 0) ?
                 range.from.fileList[ 0 ].href : (pageList.indexOf(range.from) + 1).toString(10);
             this.rangeFromLabel = range.from.orderLabel || alternativeLabel;
 
@@ -56,13 +57,11 @@ namespace org.mycore.mets.model.state {
         }
 
         private static copy(pl:Array<model.simple.MCRMetsPage>, range:PagesMoveChangeRange, to:PagesMoveChangeDestination) {
-            var startIndex = pl.indexOf(range.from);
-            var count = this.getRangeCount(pl, range, startIndex);
-
-            var pages = pl.splice(startIndex, count);
-
-            var destinationIndex = pl.indexOf(to.element) + (to.before ? 0 : 1 );
-            var args = (<any>[ destinationIndex, 0 ]).concat(pages);
+            const startIndex = pl.indexOf(range.from);
+            const count = this.getRangeCount(pl, range, startIndex);
+            const pages = pl.splice(startIndex, count);
+            const destinationIndex = pl.indexOf(to.element) + (to.before ? 0 : 1 );
+            const args = (<any>[ destinationIndex, 0 ]).concat(pages);
             pl.splice.apply(pl, args);
         }
 

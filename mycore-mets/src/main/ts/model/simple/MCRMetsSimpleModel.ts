@@ -10,17 +10,17 @@ namespace org.mycore.mets.model.simple {
 
 
         public static fromJson(json:any):MCRMetsSimpleModel {
-            var serializedJson = (typeof json != "object") ? JSON.parse(json) : json;
+            const serializedJson = (typeof json != "object") ? JSON.parse(json) : json;
 
-            var idPageMap = {};
-            var idFileMap = {};
-            var idChapterMap = {};
+            let idPageMap = {};
+            let idFileMap = {};
+            let idChapterMap = {};
 
-            var metsPageList = serializedJson.metsPageList.map((pageObject, index)=> {
-                var files = pageObject.fileList.map((fileObject:MCRMetsFile)=> {
+            let metsPageList = serializedJson.metsPageList.map((pageObject, index)=> {
+                let files = pageObject.fileList.map((fileObject:MCRMetsFile)=> {
                     return new MCRMetsFile(fileObject.id, fileObject.href, fileObject.mimeType, fileObject.use);
                 });
-                var mcrMetsPage = new MCRMetsPage(pageObject.id,
+                let mcrMetsPage = new MCRMetsPage(pageObject.id,
                     pageObject.orderLabel || null, pageObject.contentIds || null,
                     pageObject.hidden || false,
                     files);
@@ -32,21 +32,21 @@ namespace org.mycore.mets.model.simple {
             });
 
 
-            var metsRootSection = MCRMetsSimpleModel.createSection(serializedJson.rootSection, idChapterMap, idFileMap);
+            let metsRootSection = MCRMetsSimpleModel.createSection(serializedJson.rootSection, idChapterMap, idFileMap);
             serializedJson.sectionPageLinkList.forEach((linkObject)=> {
-                var page = idPageMap[ linkObject.to ];
-                var section = idChapterMap[ linkObject.from ];
+                let page = idPageMap[ linkObject.to ];
+                let section = idChapterMap[ linkObject.from ];
                 section.linkedPages.push(page);
             });
             return new MCRMetsSimpleModel(metsRootSection, metsPageList);
         }
 
         private static createSection(object:any, idChapterMap:any, idFileMap:any):MCRMetsSection {
-            var section = new MCRMetsSection(object.id, object.type, object.label);
+            let section = new MCRMetsSection(object.id, object.type, object.label);
             idChapterMap[ section.id ] = section;
 
             object.metsSectionList.forEach((childObject)=> {
-                var child = MCRMetsSimpleModel.createSection(childObject, idChapterMap, idFileMap);
+                let child = MCRMetsSimpleModel.createSection(childObject, idChapterMap, idFileMap);
                 section.metsSectionList.push(child);
                 child.parent = section;
             });
@@ -59,7 +59,7 @@ namespace org.mycore.mets.model.simple {
                         console.warn(altoLink);
                         return;
                     }
-                    var al = new MCRMetsAltoLink(idFileMap[ altoLink.altoFile ], altoLink.begin, altoLink.end);
+                    let al = new MCRMetsAltoLink(idFileMap[ altoLink.altoFile ], altoLink.begin, altoLink.end);
                     section.altoLinks.push(al);
                 });
             }
@@ -70,8 +70,8 @@ namespace org.mycore.mets.model.simple {
 
 
         public static toJson(model:MCRMetsSimpleModel) {
-            var sectionIdPageMap = new Array();
-            var addIdsToSectionMap = (section:MCRMetsSection)=> {
+            let sectionIdPageMap = new Array();
+            let addIdsToSectionMap = (section:MCRMetsSection)=> {
                 section.metsSectionList.forEach(addIdsToSectionMap);
                 section.linkedPages.forEach((lp:MCRMetsPage)=> {
                     sectionIdPageMap.push({from : section.id, to : lp.id});
@@ -79,8 +79,8 @@ namespace org.mycore.mets.model.simple {
             };
             addIdsToSectionMap(model.rootSection);
 
-            var pageList = model.metsPageList.map((p:MCRMetsPage)=>MCRMetsPage.copy(p));
-            var root = model.rootSection.getJsonObject();
+            let pageList = model.metsPageList.map((p:MCRMetsPage)=>MCRMetsPage.copy(p));
+            let root = model.rootSection.getJsonObject();
 
             return JSON.stringify({
                 sectionPageLinkList : sectionIdPageMap,

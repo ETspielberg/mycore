@@ -64,15 +64,15 @@ namespace org.mycore.mets.model.state {
         }
 
         public listClicked() {
-            var options = {
+            const options = {
                 templateUrl : "state/changeListModal.html",
                 controller : "MetsEditorChangeListController",
                 size : "lg"
             };
-            var modal = this.$modal.open(options);
+            const modal = this.$modal.open(options);
             modal.changes = this.stateEngine.getLastChanges();
 
-            var emptyCallback = () => {/* */
+            const emptyCallback = () => {/* */
             };
 
             modal.result.then(emptyCallback, emptyCallback);
@@ -81,6 +81,3 @@ namespace org.mycore.mets.model.state {
 }
 
 
-var metsEditorStateController = angular.module("MetsEditorApp");
-metsEditorStateController.controller("MetsEditorStateController",
-    [ "$modal", "MetsEditorI18NModel", "hotkeys", org.mycore.mets.model.state.MetsEditorStateController ]);

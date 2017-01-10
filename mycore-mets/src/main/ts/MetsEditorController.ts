@@ -46,11 +46,14 @@ namespace org.mycore.mets.controller {
         }
 
         public init(parameter:MetsEditorParameter) {
+            const emptyCallback = () => {
+                //do nothing
+            };
             this.validate(parameter);
             this.model = this.metsEditorModelFactory.getInstance(parameter);
             this.metsModelLockService.lock(this.model.lockURL, (success:boolean)=> {
                 if (!success) {
-                    var options = {
+                    let options = {
                         templateUrl : "error/modal.html",
                         controller : "ErrorModalController",
                         size : "sm"
@@ -61,9 +64,7 @@ namespace org.mycore.mets.controller {
                         this.i18nModel.messages[ "noLockTitle" ] || "???noLockTitle???",
                         this.i18nModel.messages[ "noLockMessage" ] || "???noLockMessage???"
                     );
-                    var emptyCallback = () => {
-                        //do nothing
-                    };
+
                     this.privateErrorModal.result.then(emptyCallback, emptyCallback);
                 } else {
                     this.model.locked = true;
@@ -105,34 +106,4 @@ namespace org.mycore.mets.controller {
     }
 
 }
-{
-    let iModule = angular.module("MetsEditorApp",
-        [ "MetsEditorI18NModel",
-            "fa.directive.borderLayout",
-            "MetsEditorTemplates",
-            "ngDraggable",
-            "ui.bootstrap",
-            "ErrorModal",
-            "MetsEditorSectionModule",
-            "MetsEditorModelFactory",
-            "MetsModelSaveService",
-            "MetsEditorPresenterModule",
-            "ng-image-zoom",
-            "cfp.hotkeys",
-            "afkl.lazyImage",
-            "MetsModelLockService"
-        ]);
-    iModule.directive("selectImmediately", [ "$timeout", function ($timeout) {
-        return {
-            restrict : "A",
-            link : function (scope, iElement:any) {
-                $timeout(function () { // Using timeout to let template to be appended to DOM prior to select action.
-                    iElement[ 0 ].select();
-                });
-            }
-        };
-    } ]);
-    iModule.controller("MetsEditorController",
-        [ "$scope", "MetsEditorModelFactory", "MetsEditorI18NModel", "hotkeys", "$timeout", "MetsModelLockService", "$modal", "$window",
-            org.mycore.mets.controller.MetsEditorController ]);
-}
+

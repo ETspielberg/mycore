@@ -16,8 +16,8 @@ module org.mycore.mets.model {
         }
 
         public getCount():number {
-            var count = 0;
-            for (var i in this.privateSetObject) {
+            let count = 0;
+            for (let i in this.privateSetObject) {
                 if (this.privateSetObject.hasOwnProperty(i)) {
                     count++;
                 }
@@ -30,8 +30,8 @@ module org.mycore.mets.model {
         }
 
         public getAllSelected() {
-            var arr = new Array<T>();
-            for (var i in this.privateSetObject) {
+            const arr = new Array<T>();
+            for (let i in this.privateSetObject) {
                 if (this.privateSetObject.hasOwnProperty(i)) {
                     arr.push(this.privateSetObject[ i ]);
                 }
