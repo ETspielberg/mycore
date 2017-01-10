@@ -11,11 +11,9 @@
   <packaging>jar</packaging>
   <name>MyCoRe METS</name>
   <properties>
-    <manifest.priority>45</manifest.priority>
     <jetty.port>9301</jetty.port>
+    <manifest.priority>45</manifest.priority>
     <selenium.version>3.0.1</selenium.version>
-    <TestResultDir>${project.build.directory}</TestResultDir>
-    <selenium-utils.version>0.5-SNAPSHOT</selenium-utils.version>
   </properties>
   <build>
     <resources>
@@ -23,81 +21,6 @@
         <directory>src/main/resources</directory>
       </resource>
     </resources>
-  </build>
-  <dependencies>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.ws.rs</groupId>
-      <artifactId>javax.ws.rs-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-1.2-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jdom</groupId>
-      <artifactId>jdom2</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mycore</groupId>
-      <artifactId>mycore-base</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mycore</groupId>
-      <artifactId>mycore-iiif</artifactId>
-      <optional>true</optional>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mycore.mets</groupId>
-      <artifactId>mets-editor-frontend</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mycore.mets</groupId>
-      <artifactId>mets-model</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mycore.mets</groupId>
-      <artifactId>mets-validator</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-api</artifactId>
-      <version>${selenium.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-support</artifactId>
-      <version>${selenium.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mycore</groupId>
-      <artifactId>selenium-utils</artifactId>
-      <version>${selenium-utils.version}</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  <build>
     <plugins>
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
@@ -126,20 +49,20 @@
         <executions>
           <execution>
             <id>start-jetty</id>
-            <phase>pre-integration-test</phase>
             <goals>
               <goal>start</goal>
             </goals>
+            <phase>pre-integration-test</phase>
             <configuration>
               <scanIntervalSeconds>0</scanIntervalSeconds>
             </configuration>
           </execution>
           <execution>
             <id>stop-jetty</id>
-            <phase>post-integration-test</phase>
             <goals>
               <goal>stop</goal>
             </goals>
+            <phase>post-integration-test</phase>
           </execution>
         </executions>
       </plugin>
@@ -156,12 +79,78 @@
         </dependencies>
       </plugin>
     </plugins>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-      </resource>
-    </resources>
   </build>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-1.2-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jdom</groupId>
+      <artifactId>jdom2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mycore</groupId>
+      <artifactId>mycore-base</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mycore</groupId>
+      <artifactId>mycore-iiif</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.mycore</groupId>
+      <artifactId>selenium-utils</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mycore.mets</groupId>
+      <artifactId>mets-editor-frontend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mycore.mets</groupId>
+      <artifactId>mets-model</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mycore.mets</groupId>
+      <artifactId>mets-validator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-support</artifactId>
+    </dependency>
+  </dependencies>
   <profiles>
     <profile>
       <id>local-testing</id>
@@ -172,16 +161,15 @@
             <artifactId>maven-failsafe-plugin</artifactId>
             <configuration>
               <skip>false</skip>
-              <param>${TestResultDir}</param>
               <runOrder>alphabetical</runOrder>
             </configuration>
             <executions>
               <execution>
                 <id>firefox</id>
-                <phase>integration-test</phase>
                 <goals>
                   <goal>integration-test</goal>
                 </goals>
+                <phase>integration-test</phase>
               </execution>
               <execution>
                 <id>verify-results</id>
