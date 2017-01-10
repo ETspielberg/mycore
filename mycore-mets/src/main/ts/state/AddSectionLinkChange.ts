@@ -1,3 +1,4 @@
+///<reference path="../tree/TreeController.ts"/>
 namespace org.mycore.mets.model.state {
     export class AddSectionLinkChange extends ModelChange {
         constructor(private section:simple.MCRMetsSection, private page:simple.MCRMetsPage) {

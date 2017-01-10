@@ -1,3 +1,6 @@
+///<reference path="../../../../typings/angularjs/angular.d.ts"/>
+///<reference path="MetsEditorConfiguration.ts"/>
+
 angular.module("MetsEditorI18NModel", [ "MetsEditorConfiguration" ])
     .factory("MetsEditorI18NModel", [ "$http", "$location", "$log", "MetsEditorConfiguration",
         ($http:ng.IHttpService,

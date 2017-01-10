@@ -1,3 +1,8 @@
+///<reference path="../model/simple/MCRMetsPage.ts"/>
+///<reference path="../state/StateEngine.ts"/>
+///<reference path="../model/MetsEditorModel.ts"/>
+///<reference path="../state/PageLabelChange.ts"/>
+
 namespace org.mycore.mets.controller {
     import MCRMetsPage = org.mycore.mets.model.simple.MCRMetsPage;
     import StateEngine = org.mycore.mets.model.state.StateEngine;

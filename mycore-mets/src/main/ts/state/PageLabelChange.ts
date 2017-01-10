@@ -1,3 +1,4 @@
+///<reference path="ModelChange.ts"/>
 namespace org.mycore.mets.model.state {
     export class PageLabelChange extends ModelChange {
         constructor(private page:simple.MCRMetsPage, private to:string, from?:string) {

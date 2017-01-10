@@ -1,4 +1,5 @@
 ///<reference path="MCRMetsAltoLink.ts"/>
+///<reference path="MCRMetsPage.ts"/>
 namespace org.mycore.mets.model.simple {
     export class MCRMetsSection {
         constructor(public id:string,

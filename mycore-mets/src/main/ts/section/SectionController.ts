@@ -1,3 +1,17 @@
+///<reference path="../model/MetsEditorModel.ts"/>
+///<reference path="../model/simple/MCRMetsSection.ts"/>
+///<reference path="../model/simple/MCRMetsSimpleModel.ts"/>
+///<reference path="../model/DFGStructureSet.ts"/>
+///<reference path="../model/simple/MCRMetsPage.ts"/>
+///<reference path="../state/StateEngine.ts"/>
+///<reference path="../state/SectionTypeChange.ts"/>
+///<reference path="../state/SectionLabelChange.ts"/>
+///<reference path="../state/SectionDeleteChange.ts"/>
+///<reference path="../state/SectionAddChange.ts"/>
+///<reference path="../state/RemoveSectionLinkChange.ts"/>
+///<reference path="../state/ModelChange.ts"/>
+///<reference path="../state/AddSectionLinkChange.ts"/>
+///<reference path="../state/BatchChange.ts"/>
 namespace org.mycore.mets.controller {
 
     import MetsEditorModel = org.mycore.mets.model.MetsEditorModel;

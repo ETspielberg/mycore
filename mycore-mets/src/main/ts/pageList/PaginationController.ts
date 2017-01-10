@@ -1,3 +1,10 @@
+///<reference path="../model/Pagination.ts"/>
+///<reference path="PaginationModalModel.ts"/>
+///<reference path="../state/PageLabelChange.ts"/>
+///<reference path="../state/BatchChange.ts"/>
+///<reference path="../../../../typings/angularjs/angular.d.ts"/>
+///<reference path="../model/MetsEditorModel.ts"/>
+
 namespace org.mycore.mets.controller {
 
     import MetsEditorModel = org.mycore.mets.model.MetsEditorModel;

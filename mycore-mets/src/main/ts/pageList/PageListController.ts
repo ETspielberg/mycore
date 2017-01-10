@@ -1,3 +1,7 @@
+///<reference path="../model/MetsEditorModel.ts"/>
+///<reference path="../state/PagesMoveChange.ts"/>
+///<reference path="../model/simple/MCRMetsPage.ts"/>
+
 namespace org.mycore.mets.controller {
     import MetsEditorModel = org.mycore.mets.model.MetsEditorModel;
     import PagesMoveChange = org.mycore.mets.model.state.PagesMoveChange;

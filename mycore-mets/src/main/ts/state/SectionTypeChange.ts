@@ -1,3 +1,6 @@
+///<reference path="ModelChange.ts"/>
+///<reference path="../model/simple/MCRMetsSection.ts"/>
+
 namespace org.mycore.mets.model.state {
     export class SectionTypeChange extends ModelChange {
         constructor(private section:simple.MCRMetsSection, private to:string, from?:string) {

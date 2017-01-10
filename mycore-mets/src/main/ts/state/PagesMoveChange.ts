@@ -1,3 +1,4 @@
+///<reference path="ModelChange.ts"/>
 namespace org.mycore.mets.model.state {
     export class PagesMoveChange extends ModelChange {
 

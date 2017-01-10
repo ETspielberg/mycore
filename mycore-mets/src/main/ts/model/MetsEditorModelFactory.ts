@@ -1,3 +1,9 @@
+///<reference path="simple/MCRMetsSimpleModel.ts"/>
+///<reference path="MetsModelLoaderService.ts"/>
+///<reference path="MetsEditorConfiguration.ts"/>
+///<reference path="MetsEditorModel.ts"/>
+///<reference path="MetsEditorParameter.ts"/>
+
 module org.mycore.mets.model {
 
     import MetsModel = org.mycore.mets.model.simple.MCRMetsSimpleModel;

@@ -1,3 +1,6 @@
+///<reference path="ModelChange.ts"/>
+///<reference path="../model/simple/MCRMetsSection.ts"/>
+///<reference path="../tree/MetsEditorTreeModel.ts"/>
 namespace org.mycore.mets.model.state {
     export class SectionMoveChange extends ModelChange {
         constructor(private section:simple.MCRMetsSection, private target:DropTarget) {

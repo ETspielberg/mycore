@@ -1,3 +1,5 @@
+///<reference path="../../../../typings/angularjs/angular.d.ts"/>
+
 namespace org.mycore.mets.model {
     export class StructureSetElement {
 
@@ -78,6 +80,7 @@ namespace org.mycore.mets.model {
 
 
 }
+
 angular.module("StructureSetConfiguration", []).config(["$provide", ($provide)=> {
     $provide.constant("StructureSet", org.mycore.mets.model.StructureSetElement.DFG_STRUCTURE_SET);
 }]);

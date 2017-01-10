@@ -1,4 +1,5 @@
 ///<reference path="../../../../typings/angularjs/angular.d.ts"/>
+///<reference path="MetsEditorConfiguration.ts"/>
 
 namespace org.mycore.mets.model {
     export class MetsEditorModel {

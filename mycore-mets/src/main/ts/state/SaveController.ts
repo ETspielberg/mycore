@@ -1,3 +1,5 @@
+///<reference path="../model/MetsModelSaveService.ts"/>
+///<reference path="../model/MetsEditorModel.ts"/>
 namespace org.mycore.mets.model.state {
 
     import MetsModelSave = org.mycore.mets.model.MetsModelSave;

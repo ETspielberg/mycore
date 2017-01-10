@@ -1,3 +1,4 @@
+///<reference path="../model/simple/MCRMetsSection.ts"/>
 namespace org.mycore.mets.controller {
 
     import MCRMetsSection = org.mycore.mets.model.simple.MCRMetsSection;

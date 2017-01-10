@@ -1,3 +1,5 @@
+///<reference path="ModelChange.ts"/>
+
 namespace org.mycore.mets.model.state {
     export class StateEngine {
         private privateLastChanges:Array<ModelChange> = new Array<ModelChange>();

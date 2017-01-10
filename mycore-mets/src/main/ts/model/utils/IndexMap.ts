@@ -1,3 +1,4 @@
+///<reference path="IndexSet.ts"/>
 module org.mycore.mets.model {
 
     export class IndexMap<T1,T2> {

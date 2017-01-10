@@ -1,3 +1,4 @@
+///<reference path="MCRMetsFile.ts"/>
 namespace org.mycore.mets.model.simple {
     export class MCRMetsAltoLink{
         constructor(public altoFile:MCRMetsFile, public begin:string, public end:string){

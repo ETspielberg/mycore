@@ -1,3 +1,9 @@
+///<reference path="PaginationModalModel.ts"/>
+///<reference path="../model/simple/MCRMetsPage.ts"/>
+///<reference path="../model/Pagination.ts"/>
+///<reference path="../state/PageLabelChange.ts"/>
+///<reference path="../../../../typings/angularjs/angular.d.ts"/>
+
 namespace org.mycore.mets.controller.Pagination {
 
     import PaginationModalModel = org.mycore.mets.model.PaginationModalModel;

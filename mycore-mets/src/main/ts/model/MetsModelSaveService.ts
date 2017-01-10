@@ -1,3 +1,8 @@
+///<reference path="simple/MCRMetsSimpleModel.ts"/>
+///<reference path="simple/MCRMetsPage.ts"/>
+///<reference path="simple/MCRMetsSection.ts"/>
+///<reference path="../../../../typings/angularjs/angular.d.ts"/>
+
 namespace org.mycore.mets.model {
 
     import MetsModel = org.mycore.mets.model.simple.MCRMetsSimpleModel;
@@ -11,7 +16,7 @@ namespace org.mycore.mets.model {
         }
 
         save(url:string, model:MetsModel, callBack:(success:boolean)=>void) {
-            var jsonData = MCRMetsSimpleModel.toJson(model);
+            var jsonData = MetsModel.toJson(model);
             console.log(jsonData);
             var promise = this.httpService.post(url, jsonData);
 
