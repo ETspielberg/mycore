@@ -1,5 +1,5 @@
 module.exports = function (grunt) {
-    grunt.loadNpmTasks('grunt-typescript');
+    grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -103,12 +103,11 @@ module.exports = function (grunt) {
             copied: ["<%= properties.outputPath %>/example", "target/json"],
             all: ["<%= properties.outputPath %>/", "typings/", "bower_components/"]
         },
-        typescript: { // Compiles Typescript files
+        ts: { // Compiles Typescript files
             MetsEditorClient: {
                 src: "src/main/ts/MetsEditor.ts",
-                dest: "<%= properties.outputPath %>/js/MetsEditor.js",
+                out: "<%= properties.outputPath %>/js/MetsEditor.js",
                 options: {
-                    module: 'commonjs',
                     target: 'es5',
                     declaration: true,
                     comments: true,
@@ -121,9 +120,8 @@ module.exports = function (grunt) {
             },
             MetsEditorClientTests: {
                 src: ["<%= properties.outputPath %>/js/MetsEditor.d.ts", "src/test/ts/**/*.ts"],
-                dest: "<%= properties.outputPath %>/js/MetsEditor-tests.js",
+                out: "<%= properties.outputPath %>/js/MetsEditor-tests.js",
                 options: {
-                    module: 'commonjs',
                     target: 'es5',
                     declaration: true,
                     comments: true,
@@ -234,8 +232,8 @@ module.exports = function (grunt) {
     });
 
     grunt.task.registerTask("dependencies", ["bower:install", "tsd:refresh"]);
-    grunt.task.registerTask("compile", ["typescript:MetsEditorClient", "less:MetsEditorClient", "html2js:templates", "uglify"]);
-    grunt.task.registerTask("compileTests", ["typescript:MetsEditorClientTests"]);
+    grunt.task.registerTask("compile", ["ts:MetsEditorClient", "less:MetsEditorClient", "html2js:templates", "uglify"]);
+    grunt.task.registerTask("compileTests", ["ts:MetsEditorClientTests"]);
     grunt.task.registerTask("default", ["dependencies", "compile", "compileTests", "tslint",
         "copy"]);
 

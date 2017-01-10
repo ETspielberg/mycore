@@ -9,9 +9,9 @@ angular.module("MetsEditorI18NModel", [ "MetsEditorConfiguration" ])
                 for (var index in i18nData) {
                     if (i18nData.hasOwnProperty(index)) {
                         var betterKey = index;
-                        if(index.startsWith("component.mets.editor")){
+                        if (index.indexOf("component.mets.editor") == 0) {
                             betterKey = index.substr("component.mets.editor.".length);
-                        } else if (index.startsWith("component.mets.dfgStructureSet")) {
+                        } else if (index.indexOf("component.mets.dfgStructureSet") == 0) {
                             betterKey = index.substr("component.mets.dfgStructureSet.".length);
                         }
                         metsEditorMessageModel.messages[ betterKey ] = i18nData[ index ];

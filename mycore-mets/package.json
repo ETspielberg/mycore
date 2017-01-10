@@ -20,10 +20,10 @@
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-html2js": "^0.3.0",
+    "grunt-ts": "^6.0.0-beta.9",
     "grunt-tsd": "^0.1.0",
     "grunt-tslint": "^2.4.0",
     "grunt-typedoc": "^0.2.2",
-    "grunt-typescript": "^0.7.0",
     "serve-static": "^1.9.2",
     "tslint": "^2.4.2"
   }

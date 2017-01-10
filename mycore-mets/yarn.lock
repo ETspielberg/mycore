@@ -238,10 +238,6 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@~2.9.34:
-  version "2.9.34"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.9.34.tgz#2f7b4ec80216328a9fddebdf69c8d4942feff7d8"
-
 boom@0.4.x:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/boom/-/boom-0.4.2.tgz#7a636e9ded4efcefb19cef4947a3c67dfaee911b"
@@ -506,7 +502,7 @@ chmodr@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/chmodr/-/chmodr-0.1.0.tgz#e09215a1d51542db2a2576969765bcf6125583eb"
 
-chokidar@^1.0.0, chokidar@^1.0.5:
+chokidar@^1.0.0, chokidar@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.6.1.tgz#2f4447ab5e96e50fb3d789fd90d4c72e0e4c70c2"
   dependencies:
@@ -704,6 +700,15 @@ cryptiles@2.x.x:
   dependencies:
     boom "2.x.x"
 
+csproj2ts@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/csproj2ts/-/csproj2ts-0.0.8.tgz#9d1c719e20c42cce8c4de29008efc35549fd126f"
+  dependencies:
+    es6-promise "^4.0.5"
+    lodash "^4.17.4"
+    semver "^5.3.0"
+    xml2js "^0.4.17"
+
 css-parse@1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/css-parse/-/css-parse-1.0.4.tgz#38b0503fbf9da9f54e9c1dbda60e145c77117bdd"
@@ -878,9 +883,13 @@ es6-iterator@2:
     es5-ext "^0.10.7"
     es6-symbol "3"
 
-es6-promise@~4.0.3:
+es6-promise@^4.0.5, es6-promise@~4.0.3:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.0.5.tgz#7882f30adde5b240ccfa7f7d78c548330951ae42"
+
+es6-promise@~0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-0.1.2.tgz#f112c29fea5a0998539fcb6a2fd21443d28f05f7"
 
 es6-shim@0.9.1:
   version "0.9.1"
@@ -1418,6 +1427,19 @@ grunt-lib-phantomjs@^1.0.0:
     semver "^5.1.0"
     temporary "^0.0.8"
 
+grunt-ts@^6.0.0-beta.9:
+  version "6.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/grunt-ts/-/grunt-ts-6.0.0-beta.9.tgz#d35c7012c68acad71c9b5b75c31f6f285363f1dc"
+  dependencies:
+    chokidar "^1.6.1"
+    csproj2ts "^0.0.8"
+    es6-promise "~0.1.1"
+    lodash "^4.17.4"
+    ncp "0.5.1"
+    rimraf "2.2.6"
+    semver "^5.3.0"
+    strip-bom "^2.0.0"
+
 grunt-tsd@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/grunt-tsd/-/grunt-tsd-0.1.0.tgz#d5528fa9e3ea63007ab740736b0aa488940460d7"
@@ -1433,14 +1455,6 @@ grunt-typedoc@^0.2.2:
   resolved "https://registry.yarnpkg.com/grunt-typedoc/-/grunt-typedoc-0.2.4.tgz#4e382a54e6dd9f1aaa2bd7c1863d1d261dbcb63f"
   dependencies:
     typedoc "^0.4.1"
-
-grunt-typescript@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/grunt-typescript/-/grunt-typescript-0.7.0.tgz#153c653e77ba78fd8e36733fedbd92e4dfaa5865"
-  dependencies:
-    bluebird "~2.9.34"
-    chokidar "^1.0.5"
-    typescript "1.5.3"
 
 grunt@^0.4.5:
   version "0.4.5"
@@ -2029,6 +2043,10 @@ lodash@^3.2.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
+lodash@^4.0.0, lodash@^4.17.4:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
+
 lodash@^4.13.1, lodash@^4.14.0, lodash@^4.8.2:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
@@ -2301,6 +2319,10 @@ nan@^2.3.0:
 natives@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/natives/-/natives-1.1.0.tgz#e9ff841418a6b2ec7a495e939984f78f163e6e31"
+
+ncp@0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/ncp/-/ncp-0.5.1.tgz#743985316e3db459281b587169e845735a05439f"
 
 next-tick@~0.2.2:
   version "0.2.2"
@@ -3054,9 +3076,17 @@ rimraf@~2.2.0, rimraf@~2.2.1, rimraf@~2.2.8:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
 
+rimraf@2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.6.tgz#c59597569b14d956ad29cacc42bdddf5f0ea4f4c"
+
 rx@^2.2.27:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/rx/-/rx-2.5.3.tgz#21adc7d80f02002af50dae97fd9dbf248755f566"
+
+sax@>=0.6.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
 
 semver-diff@^0.1.0:
   version "0.1.0"
@@ -3068,7 +3098,7 @@ semver@^2.2.1, semver@~2.3.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-2.3.2.tgz#b9848f25d6cf36333073ec9ef8856d42f1233e52"
 
-semver@^5.0.1, semver@^5.1.0, semver@~5.3.0, "semver@2 || 3 || 4 || 5":
+semver@^5.0.1, semver@^5.1.0, semver@^5.3.0, semver@~5.3.0, "semver@2 || 3 || 4 || 5":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
@@ -3531,10 +3561,6 @@ typedoc@^0.4.1:
     typedoc-default-themes "^0.4.0"
     typescript "1.8.10"
 
-typescript@1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-1.5.3.tgz#ce35e55f75b7a8d0ed571b503bd0a57157e523f7"
-
 typescript@1.8.10:
   version "1.8.10"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-1.8.10.tgz#b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e"
@@ -3765,6 +3791,19 @@ xdg-basedir@^1.0.0:
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-1.0.1.tgz#14ff8f63a4fdbcb05d5b6eea22b36f3033b9f04e"
   dependencies:
     user-home "^1.0.0"
+
+xml2js@^0.4.17:
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.17.tgz#17be93eaae3f3b779359c795b419705a8817e868"
+  dependencies:
+    sax ">=0.6.0"
+    xmlbuilder "^4.1.0"
+
+xmlbuilder@^4.1.0:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-4.2.1.tgz#aa58a3041a066f90eaa16c2f5389ff19f3f461a5"
+  dependencies:
+    lodash "^4.0.0"
 
 xtend@^4.0.0:
   version "4.0.1"
