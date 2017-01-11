@@ -37,7 +37,7 @@ namespace org.mycore.mets.controller {
             addLinkedPages(this.model.metsModel.rootSection);
 
             return this.model.metsModel.metsPageList.filter((p: MCRMetsPage) => {
-                return linkedPages[ p.id ] != true;
+                return linkedPages[ p.id ] !== true;
             });
         }
 

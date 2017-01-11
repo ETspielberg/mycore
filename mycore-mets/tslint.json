@@ -54,6 +54,7 @@
       "check-separator",
       "check-type",
       "check-typecast"
-    ]
+    ],
+    "triple-equals": true
   }
 }

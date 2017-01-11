@@ -97,7 +97,9 @@ namespace org.mycore.mets.controller {
         }
 
         private checkParameter(parameterToCheck: string, parameters: MetsEditorParameter) {
-            if (!(parameterToCheck in parameters) || parameters[ parameterToCheck ] == null) {
+            if (!(parameterToCheck in parameters) ||
+                parameters[ parameterToCheck ] === null ||
+                typeof parameters[ parameterToCheck ] === "undefined") {
                 throw `MetsEditorParameter does not have a valid ${parameterToCheck}`;
             }
         }

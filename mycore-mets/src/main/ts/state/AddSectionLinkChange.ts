@@ -14,9 +14,9 @@ namespace org.mycore.mets.model.state {
 
         public findParentWithLink(section = this.section): {pos: number; parentSection: MCRMetsSection} {
             const pos = section.linkedPages.indexOf(this.page);
-            if (pos != -1) {
+            if (pos !== -1) {
                 return {pos : pos, parentSection : section};
-            } else if (section.parent == null) {
+            } else if (section.parent === null) {
                 return {pos : -1, parentSection : null};
             } else {
                 return this.findParentWithLink(section.parent);
@@ -24,9 +24,9 @@ namespace org.mycore.mets.model.state {
         }
 
         public doChange() {
-            if (this.section.parent != null) {
+            if (this.section.parent !== null) {
                 let {pos, parentSection} = this.findParentWithLink(this.section);
-                if (parentSection != null) {
+                if (parentSection !== null) {
                     this.parent = parentSection;
                     parentSection.linkedPages.splice(pos, 1);
                 }
@@ -36,7 +36,7 @@ namespace org.mycore.mets.model.state {
 
         public unDoChange() {
             this.section.linkedPages.splice(this.section.linkedPages.indexOf(this.page), 1);
-            if (this.parent != null) {
+            if (this.parent !== null) {
                 this.parent.linkedPages.push(this.page);
             }
         }

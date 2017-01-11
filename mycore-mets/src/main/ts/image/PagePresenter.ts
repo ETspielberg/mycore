@@ -18,12 +18,12 @@ namespace org.mycore.mets.controller {
         }
 
         public getPreviewURL(fileList: Array<MCRMetsFile>) {
-            const href = fileList.filter((f) => f.use == "MASTER")[ 0 ].href;
+            const href = fileList.filter((f) => f.use === "MASTER")[ 0 ].href;
             return this.urlPattern.replace("{image}", href).replace("{quality}", "MID");
         }
 
         public getImageURL(fileList: Array<MCRMetsFile>) {
-            const href = fileList.filter((f) => f.use == "MASTER")[ 0 ].href;
+            const href = fileList.filter((f) => f.use === "MASTER")[ 0 ].href;
             return this.urlPattern.replace("{image}", href).replace("{quality}", "MAX");
         }
 

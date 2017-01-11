@@ -42,7 +42,7 @@ namespace org.mycore.mets.controller {
             this.i18nModel = i18nModel;
 
             $scope.$on("editSection", (event, data) => {
-                if (data.section == this.section) {
+                if (data.section === this.section) {
                     this.startEditLabel();
                 }
             });
@@ -61,7 +61,7 @@ namespace org.mycore.mets.controller {
         private editorModel: MetsEditorModel;
 
         public init(section: MCRMetsSection, editorModel: MetsEditorModel) {
-            if (typeof section == "undefined" || !(section instanceof MCRMetsSection)) {
+            if (typeof section === "undefined" || !(section instanceof MCRMetsSection)) {
                 throw `section is invalid : ${section}`;
             }
 
@@ -123,7 +123,7 @@ namespace org.mycore.mets.controller {
         }
 
         public isDeletable() {
-            return this.section != null && this.section.parent != null;
+            return this.section !== null && typeof this.section !== "undefined" && this.section.parent !== null;
         }
 
         private startEditLabel() {
@@ -135,7 +135,7 @@ namespace org.mycore.mets.controller {
 
         private registerEventHandler($scope) {
             $scope.$on("startEditLabel", (event, data: StartEditLabel) => {
-                if (data.ofSection == this.section) {
+                if (data.ofSection === this.section) {
                     this.startEditLabel();
                 }
             });
@@ -179,7 +179,7 @@ namespace org.mycore.mets.controller {
         }
 
         public childHasLink(curChild: MCRMetsSection, page: MCRMetsPage) {
-            const thisHasChild = curChild.linkedPages.indexOf(page) != -1;
+            const thisHasChild = curChild.linkedPages.indexOf(page) !== -1;
 
             if (thisHasChild) {
                 return true;
@@ -201,7 +201,7 @@ namespace org.mycore.mets.controller {
                 return new AddSectionLinkChange(this.section, page);
             });
 
-            if (changes.length == 1) {
+            if (changes.length === 1) {
                 change = changes[ 0 ];
             } else if (changes.length > 1) {
                 change = new BatchChange(changes);

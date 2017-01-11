@@ -31,7 +31,7 @@ namespace org.mycore.mets.model {
         };
 
         public static getPaginationMethodByName(name: string) {
-            const arrayOfMethodsWithName = Pagination.paginationMethods.filter((pm: PaginationMethod) => pm.name == name);
+            const arrayOfMethodsWithName = Pagination.paginationMethods.filter((pm: PaginationMethod) => pm.name === name);
             return arrayOfMethodsWithName[ 0 ];
         }
 
@@ -63,11 +63,11 @@ namespace org.mycore.mets.model {
                 test : Pagination.regExpTestMethod,
                 parseExpr : Pagination.suffixRegExprParsing,
                 paginate : function (nextPageNumber) {
-                    return Math.ceil(nextPageNumber / 2) + (nextPageNumber % 2 == 1 ? "r" : "v" );
+                    return Math.ceil(nextPageNumber / 2) + (nextPageNumber % 2 === 1 ? "r" : "v" );
                 },
                 getArabicPageNumber : function (val) {
                     const parsed = this.parseExpr(val);
-                    return parsed.page * 2 - (parsed.appendix == "r" ? 1 : 0);
+                    return parsed.page * 2 - (parsed.appendix === "r" ? 1 : 0);
                 }
             },
             {
@@ -90,11 +90,11 @@ namespace org.mycore.mets.model {
                 test : Pagination.regExpTestMethod,
                 parseExpr : Pagination.suffixRegExprParsing,
                 paginate : function (nextPageNumber) {
-                    return Math.ceil(nextPageNumber / 2) + (nextPageNumber % 2 == 1 ? "a" : "b" );
+                    return Math.ceil(nextPageNumber / 2) + (nextPageNumber % 2 === 1 ? "a" : "b" );
                 },
                 getArabicPageNumber : function (val) {
                     const parsed = this.parseExpr(val);
-                    return parsed.page * 2 - (parsed.appendix == "a" ? 1 : 0);
+                    return parsed.page * 2 - (parsed.appendix === "a" ? 1 : 0);
                 }
             },
             {
@@ -114,7 +114,7 @@ namespace org.mycore.mets.model {
                 vars : Pagination.romanVars,
                 testExpr : /^m*(?:d?c{0,3}|c[md])(?:l?x{0,3}|x[cl])(?:v?i{0,3}|i[xv])$/,
                 test : function (rome: string) {
-                    return rome != "" && Pagination.regExpTestMethod.apply(this, [ rome ]);
+                    return rome !== "" && Pagination.regExpTestMethod.apply(this, [ rome ]);
                 },
                 paginate : function (arabic: number) {
                     // break down number into units, tens, hundreds, thousands
@@ -181,7 +181,7 @@ namespace org.mycore.mets.model {
                 vars : Pagination.romanVars,
                 testExpr : /^M*(?:D?C{0,3}|C[MD])(?:L?X{0,3}|X[CL])(?:V?I{0,3}|I[XV])$/,
                 test : function (rome: string) {
-                    return rome != "" && Pagination.regExpTestMethod.apply(this, [ rome ]);
+                    return rome !== "" && Pagination.regExpTestMethod.apply(this, [ rome ]);
                 },
                 paginate : function (arabic: number) {
                     // break down number into units, tens, hundreds, thousands
@@ -251,7 +251,7 @@ namespace org.mycore.mets.model {
                     const rowsPerPage = (fromToRegExprParsing.toRow - fromToRegExprParsing.fromRow) + 1;
                     const actualPageNumber = fromToRegExprParsing.toRow / rowsPerPage;
 
-                    if (rowsPerPage != 2) {
+                    if (rowsPerPage !== 2) {
                         throw `rowsPerPage must be 2 (${rowsPerPage})`;
                     }
 

@@ -28,7 +28,7 @@ namespace org.mycore.mets.model {
 
     export class DropTarget {
         constructor(public element: any, public position: string) {
-            if (position != "after" && position != "before" && position != "in") {
+            if (position !== "after" && position !== "before" && position !== "in") {
                 throw `invalid drag and drop target $position $element`;
             }
         }

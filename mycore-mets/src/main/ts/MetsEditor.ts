@@ -147,9 +147,9 @@ angular.module("MetsEditorApp").directive("jumpToElement", [ "$timeout", functio
         link : function (scope, iElement, attr) {
             const findOverflowScrollParent = (elem) => {
                 const ngElement = elem;
-                if (ngElement.css("overflow") == "scroll" || ngElement.css("overflow-y") == "scroll") {
+                if (ngElement.css("overflow") === "scroll" || ngElement.css("overflow-y") === "scroll") {
                     return ngElement;
-                } else if (ngElement.parent() != null) {
+                } else if (ngElement.parent() !== null) {
                     return findOverflowScrollParent(ngElement.parent());
                 } else {
                     return null;
@@ -159,7 +159,7 @@ angular.module("MetsEditorApp").directive("jumpToElement", [ "$timeout", functio
                 $timeout(function () { // Using timeout to let template to be appended to DOM prior to select action.
                     const elemToScrollTo = iElement;
                     const scrollParent = findOverflowScrollParent(iElement);
-                    if (scrollParent != null) {
+                    if (scrollParent !== null) {
                         let ngScrollParent = scrollParent;
                         const elementTop = elemToScrollTo.position().top;
                         const scrollTop = ngScrollParent[ 0 ].scrollTop;
@@ -178,7 +178,7 @@ angular.module("MetsEditorApp").directive("jumpToElement", [ "$timeout", functio
             };
 
             const checkAndJump = function () {
-                if ((<any> attr).jumpToElement == "true") {
+                if ((<any> attr).jumpToElement === "true") {
                     jumpToElement();
                 }
             };

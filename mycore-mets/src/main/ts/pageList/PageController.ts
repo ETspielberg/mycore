@@ -36,7 +36,7 @@ namespace org.mycore.mets.controller {
             this.imageLocation = metsEditorModel.configuration.imageLocationPattern
                 .replace("{quality}", "MIN")
                 .replace("{derivate}", metsEditorModel.metsId)
-                .replace("{image}", this.getFiles().filter((f) => f.use == "MASTER")[ 0 ].href);
+                .replace("{image}", this.getFiles().filter((f) => f.use === "MASTER")[ 0 ].href);
         }
 
         private changeLabel(to: string) {
@@ -53,7 +53,7 @@ namespace org.mycore.mets.controller {
         }
 
         public hasLabel() {
-            return "orderLabel" in this.page && this.page.orderLabel != null;
+            return "orderLabel" in this.page && typeof this.page.orderLabel !== "undefined" && this.page.orderLabel !== null;
         }
 
         public getFiles() {
@@ -82,7 +82,7 @@ namespace org.mycore.mets.controller {
         }
 
         private throwEdit(event?: JQueryEventObject) {
-            if (typeof event != "undefined") {
+            if (event !== null && typeof event !== "undefined") {
                 event.stopImmediatePropagation();
                 event.stopPropagation();
             }
@@ -91,7 +91,7 @@ namespace org.mycore.mets.controller {
         }
 
         private applyEdit(event?: JQueryEventObject) {
-            if (typeof event != "undefined") {
+            if (event !== null && typeof event !== "undefined") {
                 event.stopImmediatePropagation();
                 event.stopPropagation();
             }
@@ -103,7 +103,7 @@ namespace org.mycore.mets.controller {
         }
 
         private isValidLabel(label: string) {
-            return label != null && label.trim().length > 0;
+            return label !== null && typeof label !== "undefined" && label.trim().length > 0;
         }
 
         private startEditLabel() {

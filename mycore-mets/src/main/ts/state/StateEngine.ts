@@ -54,12 +54,12 @@ namespace org.mycore.mets.model.state {
         }
 
         public isServerState() {
-            return this.serverState == this.getLastChange();
+            return this.serverState === this.getLastChange();
         }
 
         private getLastChange() {
             const lastChanges = this.getLastChanges();
-            if (lastChanges.length == 0) {
+            if (lastChanges.length === 0) {
                 return null;
             }
             return lastChanges[ lastChanges.length - 1 ];

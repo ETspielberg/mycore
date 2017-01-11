@@ -31,7 +31,7 @@ namespace org.mycore.mets.controller.Pagination {
             let changesLeft = true;
 
             while (changesLeft) {
-                changesLeft = this.changes.pop() != null;
+                changesLeft = typeof this.changes.pop() !== "undefined";
             }
 
             this.calculateChanges().forEach(c => this.changes.push(c));
@@ -39,9 +39,9 @@ namespace org.mycore.mets.controller.Pagination {
 
         public changeType() {
             const value = this.model.value;
-            if (value != null) {
+            if (value !== null && typeof value !== "undefined") {
                 const newMethod = org.mycore.mets.model.Pagination.detectPaginationMethodByPageLabel(value);
-                if (newMethod != null) {
+                if (newMethod !== null) {
                     this.model.method = newMethod;
                 }
             }
@@ -53,7 +53,8 @@ namespace org.mycore.mets.controller.Pagination {
 
         public calculateChanges(replaceOldLabel = true) {
             let changes;
-            if (this.model.method != null && this.model.method.test(this.model.value)) {
+            if (typeof this.model.method !== "undefined" && this.model.method !== null &&
+                this.model.method.test(this.model.value)) {
                 changes = org.mycore.mets.model.Pagination.getChanges(
                     0,
                     this.model.selectedPages.length,

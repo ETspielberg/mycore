@@ -42,7 +42,7 @@ namespace org.mycore.mets.controller {
             this.changeListModalInstance = this.$modal.open(options);
             this.changeListModalInstance.model = new org.mycore.mets.model.PaginationModalModel(this.i18nModel.messages,
                 this.metsEditorModel.metsModel.metsPageList.filter((t, index) => {
-                    return (this.metsEditorModel.pageSelection.from != null) ?
+                    return (this.metsEditorModel.pageSelection.from !== null) ?
                         index >= this.metsEditorModel.pageSelection.from && index <= this.metsEditorModel.pageSelection.to :
                         true;
                 }),

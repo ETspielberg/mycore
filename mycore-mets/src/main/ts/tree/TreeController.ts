@@ -42,19 +42,19 @@ namespace org.mycore.mets.controller {
         private editorModel: MetsEditorModel;
 
         public init(root: any, childFieldName: string, parentFieldName: string, metsEditorModel: MetsEditorModel) {
-            if (root == null || typeof root == "undefined") {
+            if (typeof root === "undefined" || root === null) {
                 throw `invalid
                 root
                 parameter
                 ${root}
             `;
-            } else if (childFieldName == null || childFieldName == "" || typeof childFieldName == "undefined") {
+            } else if (typeof childFieldName === "undefined" || childFieldName === null || childFieldName === "") {
                 throw `invalid
                 childFieldName
                 parameter
                 ${childFieldName}
             `;
-            } else if (parentFieldName == null || parentFieldName == "" || typeof parentFieldName == "undefined") {
+            } else if (typeof parentFieldName === "undefined" || parentFieldName === null || parentFieldName === "") {
                 throw `invalid
                 parentFieldName
                 parameter
@@ -93,13 +93,13 @@ namespace org.mycore.mets.controller {
         public dropSuccess(target: DropTarget, sourceElement: MCRMetsSection, event: JQueryEventObject) {
             let realTargetElement;
 
-            if (target.position == "after" || target.position == "before") {
+            if (target.position === "after" || target.position === "before") {
                 realTargetElement = target.element[ this.privateParentFieldName ];
             } else {
                 realTargetElement = target.element;
             }
 
-            if (target.element == sourceElement || realTargetElement == sourceElement) {
+            if (target.element === sourceElement || realTargetElement === sourceElement) {
                 return true;
             }
 
@@ -131,10 +131,10 @@ namespace org.mycore.mets.controller {
         }
 
         private checkConsistent(path: any, source: any) {
-            if (path[ this.privateParentFieldName ] == source) {
+            if (path[ this.privateParentFieldName ] === source) {
                 return false;
             } else {
-                return path[ this.privateParentFieldName ] == null || this.checkConsistent(path[ this.privateParentFieldName ], source);
+                return path[ this.privateParentFieldName ] === null || this.checkConsistent(path[ this.privateParentFieldName ], source);
             }
         }
     }

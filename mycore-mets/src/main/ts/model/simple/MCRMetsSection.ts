@@ -41,11 +41,11 @@ namespace org.mycore.mets.model.simple {
 
         private addSectionPosition(section: MCRMetsSection, sectionToAdd: MCRMetsSection, position: string) {
             const index = this.metsSectionList.indexOf(sectionToAdd);
-            if (index == -1) {
+            if (index === -1) {
                 throw `Cannot insert section  ${section.label} ${position} ${sectionToAdd.label}` +
                 `in parent ${this.label} because ${sectionToAdd.label} is not in this.label`;
             }
-            this.metsSectionList.splice(index + (position == "after" ? 1 : 0), 0, section);
+            this.metsSectionList.splice(index + (position === "after" ? 1 : 0), 0, section);
             section.parent = this;
         }
 

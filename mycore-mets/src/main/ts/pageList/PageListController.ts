@@ -15,9 +15,9 @@ namespace org.mycore.mets.controller {
                 description : "",
                 callback : () => {
                     const pageSelection = this.model.pageSelection;
-                    if (pageSelection.from == null) {
+                    if (pageSelection.from === null) {
                         pageSelection.from = pageSelection.to = this.model.metsModel.metsPageList.length - 1;
-                    } else if (pageSelection.from == 0) {
+                    } else if (pageSelection.from === 0) {
                         pageSelection.from = pageSelection.to = null;
                     } else {
                         pageSelection.to = pageSelection.from = pageSelection.from - 1;
@@ -31,7 +31,7 @@ namespace org.mycore.mets.controller {
                 description : "",
                 callback : () => {
                     const pageSelection = this.model.pageSelection;
-                    if (pageSelection.from == null) {
+                    if (pageSelection.from === null) {
                         pageSelection.from = pageSelection.to = 0;
                     } else if (pageSelection.from >= this.model.metsModel.metsPageList.length) {
                         pageSelection.from = pageSelection.to = null;
@@ -66,14 +66,14 @@ namespace org.mycore.mets.controller {
 
         public isPageSelected(page: model.simple.MCRMetsPage) {
             const pageIndex = this.getPageIndex(page);
-            return this.model.pageSelection.from != null &&
+            return this.model.pageSelection.from !== null &&
                 this.model.pageSelection.from <= pageIndex &&
                 this.model.pageSelection.to >= pageIndex;
         }
 
         public isPageAloneSelected(page: model.simple.MCRMetsPage) {
             const pageIndex = this.getPageIndex(page);
-            return (this.model.pageSelection.from == this.model.pageSelection.to) && (this.model.pageSelection.from == pageIndex);
+            return (this.model.pageSelection.from === this.model.pageSelection.to) && (this.model.pageSelection.from === pageIndex);
         }
 
         public getSelectedPages() {
@@ -95,7 +95,7 @@ namespace org.mycore.mets.controller {
 
             document.getSelection().removeAllRanges();
             const pageIndex = this.getPageIndex(page);
-            if (this.model.pageSelection.from == null || !event.shiftKey) {
+            if (this.model.pageSelection.from === null || !event.shiftKey) {
                 // user doest used shift key
                 if (this.model.pageSelection.from !== pageIndex && this.model.pageSelection.to !== pageIndex) {
                     this.model.pageSelection.from = pageIndex;
@@ -109,7 +109,7 @@ namespace org.mycore.mets.controller {
                 // used shift key
                 if (this.model.pageSelection.from < pageIndex && pageIndex < this.model.pageSelection.to) {
                     // user clicked in range
-                    if (this.model.pageSelection.lastExpand == "top") {
+                    if (this.model.pageSelection.lastExpand === "top") {
                         this.model.pageSelection.from = pageIndex;
                     } else {
                         this.model.pageSelection.to = pageIndex;
@@ -132,10 +132,10 @@ namespace org.mycore.mets.controller {
         dropSuccess(element, position, data, event) {
             const metsPageList = this.model.metsModel.metsPageList;
 
-            if (typeof this.model.pageSelection == "undefined" ||
-                this.model.pageSelection == null ||
-                this.model.pageSelection.from == null ||
-                this.model.pageSelection.to == null ||
+            if (typeof this.model.pageSelection === "undefined" ||
+                this.model.pageSelection === null ||
+                this.model.pageSelection.from === null ||
+                this.model.pageSelection.to === null ||
                 (!(this.model.pageSelection.from in metsPageList)) ||
                 (!(this.model.pageSelection.to in metsPageList))
             ) {
@@ -146,7 +146,7 @@ namespace org.mycore.mets.controller {
             const toPage = metsPageList[ this.model.pageSelection.to ];
 
             const range = {from : fromPage, to : toPage};
-            const target = {before : position == "before", element : element};
+            const target = {before : position === "before", element : element};
             console.log(`range  { from: ${fromPage.orderLabel}, to: ${toPage.orderLabel}  }`);
             console.log(`target { before: ${target.before}, element: ${target.element.orderLabel}}`);
 

@@ -11,9 +11,9 @@ namespace org.mycore.mets.model {
             for (let index in i18nData) {
                 if (i18nData.hasOwnProperty(index)) {
                     let betterKey = index;
-                    if (index.indexOf("component.mets.editor") == 0) {
+                    if (index.indexOf("component.mets.editor") === 0) {
                         betterKey = index.substr("component.mets.editor.".length);
-                    } else if (index.indexOf("component.mets.dfgStructureSet") == 0) {
+                    } else if (index.indexOf("component.mets.dfgStructureSet") === 0) {
                         betterKey = index.substr("component.mets.dfgStructureSet.".length);
                     }
                     metsEditorMessageModel.messages[ betterKey ] = i18nData[ index ];

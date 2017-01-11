@@ -16,7 +16,7 @@ namespace org.mycore.mets.model {
         }
 
         lock(lockURL: string, callBack: (success: boolean) => void) {
-            if (typeof lockURL != "undefined" && lockURL !== null) {
+            if (lockURL !== null && typeof lockURL !== "undefined") {
                 const promise = this.httpService.get(lockURL);
 
                 promise.success((data) => {
@@ -32,7 +32,7 @@ namespace org.mycore.mets.model {
         }
 
         unlock(unLockURL) {
-            if (typeof unLockURL != "undefined" && unLockURL !== null) {
+            if (typeof unLockURL !== "undefined" && unLockURL !== null) {
                 const promise = this.httpService.get(unLockURL);
             }
         }

@@ -10,7 +10,7 @@ namespace org.mycore.mets.model.simple {
 
 
         public static fromJson(json: any): MCRMetsSimpleModel {
-            const serializedJson = (typeof json != "object") ? JSON.parse(json) : json;
+            const serializedJson = (typeof json !== "object") ? JSON.parse(json) : json;
 
             let idPageMap = {};
             let idFileMap = {};
@@ -53,8 +53,9 @@ namespace org.mycore.mets.model.simple {
 
             if ("altoLinks" in object) {
                 object.altoLinks.forEach((altoLink) => {
-                    if (typeof altoLink.altoFile == "undefined" || !(altoLink.altoFile in idFileMap) ||
-                        typeof altoLink.begin == "undefined" || typeof altoLink.end == "undefined") {
+                    if (altoLink.altoFile === null || typeof altoLink.altoFile === "undefined" || !(altoLink.altoFile in idFileMap)
+                        || altoLink.begin === null || typeof altoLink.begin === "undefined" || altoLink.end === null ||
+                        typeof altoLink.end === "undefined") {
                         console.warn("invalid alto-link ");
                         console.warn(altoLink);
                         return;

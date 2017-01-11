@@ -38,7 +38,8 @@ namespace org.mycore.mets.model.state {
         }
 
         private getRealTargetSection() {
-            return (this.target.position == "after" || this.target.position == "before") ? this.target.element.parent : this.target.element;
+            return (this.target.position === "after" || this.target.position === "before") ?
+                this.target.element.parent : this.target.element;
         }
 
         public unDoChange() {
