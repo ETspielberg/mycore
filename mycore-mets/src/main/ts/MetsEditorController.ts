@@ -47,7 +47,7 @@ namespace org.mycore.mets.controller {
 
         public init(parameter: MetsEditorParameter) {
             const emptyCallback = () => {
-                //do nothing
+                // do nothing
             };
             this.validate(parameter);
             this.model = this.metsEditorModelFactory.getInstance(parameter);

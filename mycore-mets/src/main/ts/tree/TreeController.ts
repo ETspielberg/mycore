@@ -117,7 +117,7 @@ namespace org.mycore.mets.controller {
                     this.metsConfiguration.resources + "img/move_parent_to_child.png"
                 );
                 const emptyCallback = () => {
-                    //do nothing
+                    // do nothing
                 };
                 this.privateErrorModal.result.then(emptyCallback, emptyCallback);
 

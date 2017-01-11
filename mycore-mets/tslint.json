@@ -44,6 +44,7 @@
     "semicolon": true,
     "variable-name": true,
     "no-internal-module": true,
+    "comment-format": [true, "check-space"],
     "radix": true,
     "whitespace": [
       true,
