@@ -1,3 +1,4 @@
+/* globals angular */
 {
     "use strict";
     angular.module("ng-image-zoom", []).directive('imageZoom', function () {
@@ -6,13 +7,13 @@
                 throw "no high res src found for " + el.toString();
             }
             if (!("lowResSrc" in attrs)) {
-                throw "no high res src found for " + e.toString();
+                throw "no high res src found for " + el.toString();
             }
         };
 
         return {
             restrict: 'A',
-            link: function (scope, el, attrs, controller) {
+            link: function (scope, el, attrs) {
                 checkAttributes(attrs, el);
                 var highResSrc = attrs.highResSrc;
                 var lowResSrc = attrs.lowResSrc;
@@ -74,7 +75,7 @@
                     el.attr("alt", "zoomedImage");
                     el.css({
                         "background-image": "url(\"" + highResSrc + "\")",
-                        "background-size": "auto",
+                        "background-size": "auto"
                     });
                     el.mousemove(mouseMoveHandler);
                     mouseMoveHandler.call(this, e);
@@ -85,14 +86,13 @@
 
 
                 scope.$on("destroy", function () {
-                    console.log("destroy();");
                     el.off("mousedown", startHandler);
                     el.off("mouseup", stopHandler);
                     el.off("mousemove", mouseMoveHandler);
                 });
             }
-        }
+        };
 
-    })
+    });
 
 }
