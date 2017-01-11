@@ -23,7 +23,9 @@ module.exports = function (grunt) {
         var versionString, existingFiles = possiblePaths.filter(function (path, i, arr) {
             return grunt.file.exists(path);
         });
-        if (existingFiles.length == 0) throw "no bower.json ";
+        if (existingFiles.length === 0) {
+            throw "no bower.json ";
+        }
         existingFiles.map(function (file) {
             return grunt.file.readJSON(file);
         }).filter(function (json) {
