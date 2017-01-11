@@ -1,5 +1,5 @@
 ///<reference path="../../../typings/jasmine/jasmine.d.ts"/>
-module org.mycore.mets.tests {
+namespace org.mycore.mets.tests {
     describe("Pagination", () => {
 
         let paginationExample = {

@@ -1,4 +1,4 @@
-module org.mycore.mets.tests {
+namespace org.mycore.mets.tests {
     export class TestUtils {
 
         static createJson() {

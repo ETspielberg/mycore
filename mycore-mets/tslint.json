@@ -43,7 +43,7 @@
     ],
     "semicolon": true,
     "variable-name": true,
-    "no-internal-module": false,
+    "no-internal-module": true,
     "radix": true,
     "whitespace": [
       true,

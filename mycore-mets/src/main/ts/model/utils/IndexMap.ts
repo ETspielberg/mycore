@@ -1,5 +1,5 @@
 ///<reference path="IndexSet.ts"/>
-module org.mycore.mets.model {
+namespace org.mycore.mets.model {
 
     export class IndexMap<T1, T2> {
         constructor(private indexingFunction: IndexingFunction<T1>) {

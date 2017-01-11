@@ -1,7 +1,7 @@
 ///<reference path="../../../typings/jasmine/jasmine.d.ts"/>
 ///<reference path="TestUtils.ts"/>
 
-module org.mycore.mets.tests {
+namespace org.mycore.mets.tests {
 
     import MCRMetsSection = org.mycore.mets.model.simple.MCRMetsSection;
 

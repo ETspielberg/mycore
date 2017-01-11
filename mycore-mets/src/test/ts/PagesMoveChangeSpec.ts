@@ -1,5 +1,5 @@
 ///<reference path="../../../typings/jasmine/jasmine.d.ts"/>
-module org.mycore.mets.tests {
+namespace org.mycore.mets.tests {
 
     import MCRMetsPage = org.mycore.mets.model.simple.MCRMetsPage;
     import PagesMoveChange = org.mycore.mets.model.state.PagesMoveChange;

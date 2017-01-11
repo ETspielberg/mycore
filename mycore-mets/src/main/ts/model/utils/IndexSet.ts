@@ -1,4 +1,4 @@
-module org.mycore.mets.model {
+namespace org.mycore.mets.model {
 
     export class IndexSet<T> {
         constructor(private indexingFunction: IndexingFunction<T>) {
