@@ -162,6 +162,7 @@
             <configuration>
               <skip>false</skip>
               <runOrder>alphabetical</runOrder>
+              <argLine>${env.MAVEN_OPTS}</argLine>
             </configuration>
             <executions>
               <execution>
