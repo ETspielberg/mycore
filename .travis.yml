@@ -37,3 +37,9 @@ script:
   - mkdir ${HOME}/tmp
   - export TMPDIR="${HOME}/tmp"
   - mvn -B -Plocal-testing,!standard-with-extra-repos clean install -Dwebdriver.firefox.bin=${FIREFOX_BIN} && mvn -B javadoc:javadoc && mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DfailOnMissingReportFile=false
+after_script:
+  - eval "$(ssh-agent -s)"
+  - chmod 600 .travis/deploy_key.pem
+  - ssh-add <(echo "$SSH_KEY")
+  - autodeploy.sh $TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT https://github.com/paschty/Test_Deploy_Test.git
+
