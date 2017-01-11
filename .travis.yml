@@ -40,6 +40,6 @@ script:
 after_script:
   - eval "$(ssh-agent -s)"
   - chmod 600 .travis/deploy_key.pem
-  - ssh-add <(echo "$SSH_KEY")
+  - ssh-add <(echo "$SSH_KEY"| base64 -D )
   - autodeploy.sh $TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT https://github.com/paschty/Test_Deploy_Test.git
 
