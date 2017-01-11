@@ -13,7 +13,7 @@ namespace org.mycore.mets.controller {
             hotkeys.add({
                 combo : "up",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     const pageSelection = this.model.pageSelection;
                     if (pageSelection.from == null) {
                         pageSelection.from = pageSelection.to = this.model.metsModel.metsPageList.length - 1;
@@ -29,7 +29,7 @@ namespace org.mycore.mets.controller {
             hotkeys.add({
                 combo : "down",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     const pageSelection = this.model.pageSelection;
                     if (pageSelection.from == null) {
                         pageSelection.from = pageSelection.to = 0;
@@ -43,14 +43,14 @@ namespace org.mycore.mets.controller {
             });
         }
 
-        private messages:Array<string>;
-        private model:MetsEditorModel;
+        private messages: Array<string>;
+        private model: MetsEditorModel;
         private prevent = true;
 
-        public thumbnails:boolean = false;
-        public editable:boolean;
+        public thumbnails: boolean = false;
+        public editable: boolean;
 
-        public init(model:MetsEditorModel, editable:boolean = true, thumbnails = false) {
+        public init(model: MetsEditorModel, editable: boolean = true, thumbnails = false) {
             this.model = model;
             this.editable = editable;
             this.thumbnails = thumbnails;
@@ -60,24 +60,24 @@ namespace org.mycore.mets.controller {
             return this.model.metsModel.metsPageList;
         }
 
-        public getPageIndex(page:model.simple.MCRMetsPage) {
+        public getPageIndex(page: model.simple.MCRMetsPage) {
             return this.model.metsModel.metsPageList.indexOf(page);
         }
 
-        public isPageSelected(page:model.simple.MCRMetsPage) {
+        public isPageSelected(page: model.simple.MCRMetsPage) {
             const pageIndex = this.getPageIndex(page);
             return this.model.pageSelection.from != null &&
                 this.model.pageSelection.from <= pageIndex &&
                 this.model.pageSelection.to >= pageIndex;
         }
 
-        public isPageAloneSelected(page:model.simple.MCRMetsPage) {
+        public isPageAloneSelected(page: model.simple.MCRMetsPage) {
             const pageIndex = this.getPageIndex(page);
             return (this.model.pageSelection.from == this.model.pageSelection.to) && (this.model.pageSelection.from == pageIndex);
         }
 
         public getSelectedPages() {
-            const selectedPageFilter = (page)=> this.isPageSelected(page);
+            const selectedPageFilter = (page) => this.isPageSelected(page);
             return this.model.metsModel.metsPageList.filter(selectedPageFilter);
         }
 

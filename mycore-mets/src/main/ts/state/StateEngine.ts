@@ -2,19 +2,19 @@
 
 namespace org.mycore.mets.model.state {
     export class StateEngine {
-        private privateLastChanges:Array<ModelChange> = new Array<ModelChange>();
-        private privateRevertedChanges:Array<ModelChange> = new Array<ModelChange>();
-        private serverState:ModelChange = null;
+        private privateLastChanges: Array<ModelChange> = new Array<ModelChange>();
+        private privateRevertedChanges: Array<ModelChange> = new Array<ModelChange>();
+        private serverState: ModelChange = null;
 
-        public getLastChanges():Array<ModelChange> {
+        public getLastChanges(): Array<ModelChange> {
             return this.privateLastChanges.slice(0);
         }
 
-        public getRevertedChanges():Array<ModelChange> {
+        public getRevertedChanges(): Array<ModelChange> {
             return this.privateRevertedChanges.slice(0);
         }
 
-        public changeModel(change:ModelChange) {
+        public changeModel(change: ModelChange) {
             this.clearRevertedChanges();
             change.doChange();
             this.privateLastChanges.push(change);
@@ -49,17 +49,17 @@ namespace org.mycore.mets.model.state {
             return this.privateRevertedChanges.length > 0;
         }
 
-        public markServerState(){
+        public markServerState() {
             this.serverState = this.getLastChange();
         }
 
-        public isServerState(){
+        public isServerState() {
             return this.serverState == this.getLastChange();
         }
 
         private getLastChange() {
             const lastChanges = this.getLastChanges();
-            if(lastChanges.length==0){
+            if (lastChanges.length == 0) {
                 return null;
             }
             return lastChanges[ lastChanges.length - 1 ];

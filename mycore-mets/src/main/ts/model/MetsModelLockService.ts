@@ -15,15 +15,15 @@ namespace org.mycore.mets.model {
         constructor(private httpService) {
         }
 
-        lock(lockURL:string, callBack:(success:boolean)=>void) {
-            if(typeof lockURL != "undefined" && lockURL !== null){
+        lock(lockURL: string, callBack: (success: boolean) => void) {
+            if (typeof lockURL != "undefined" && lockURL !== null) {
                 const promise = this.httpService.get(lockURL);
 
                 promise.success((data) => {
                     callBack(data.success || false);
                 });
 
-                promise.error(()=> {
+                promise.error(() => {
                     callBack(false);
                 });
             } else {
@@ -31,8 +31,8 @@ namespace org.mycore.mets.model {
             }
         }
 
-        unlock(unLockURL){
-            if(typeof unLockURL != "undefined" && unLockURL !== null){
+        unlock(unLockURL) {
+            if (typeof unLockURL != "undefined" && unLockURL !== null) {
                 const promise = this.httpService.get(unLockURL);
             }
         }

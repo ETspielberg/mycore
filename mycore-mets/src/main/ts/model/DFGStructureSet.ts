@@ -3,10 +3,10 @@
 namespace org.mycore.mets.model {
     export class StructureSetElement {
 
-        constructor(public id:string) {
+        constructor(public id: string) {
         }
 
-        public static DFG_STRUCTURE_SET:Array<StructureSetElement> = (()=> {
+        public static DFG_STRUCTURE_SET: Array<StructureSetElement> = (() => {
             return [
                 new StructureSetElement("section"),
                 new StructureSetElement("annotation"),

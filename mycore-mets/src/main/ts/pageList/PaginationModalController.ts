@@ -10,18 +10,22 @@ namespace org.mycore.mets.controller.Pagination {
 
     export class PaginationModalController {
         constructor($scope, private $modalInstance) {
-            this.model = <org.mycore.mets.model.PaginationModalModel>($modalInstance.model);
+            this.model = <org.mycore.mets.model.PaginationModalModel> ($modalInstance.model);
             $scope.ctrl = this;
-            $scope.$watch("ctrl.model.begin", ()=>this.doChanges());
-            $scope.$watch("ctrl.model.method", ()=>this.doChanges());
-            $scope.$watch("ctrl.model.reverse", ()=>this.doChanges());
-            $scope.$watch("ctrl.model.value", ()=> {
+            $scope.$watch("ctrl.model.begin", () => this.doChanges());
+            $scope.$watch("ctrl.model.method", () => this.doChanges());
+            $scope.$watch("ctrl.model.reverse", () => this.doChanges());
+            $scope.$watch("ctrl.model.value", () => {
                 this.changeType();
                 this.doChanges();
             });
         }
 
-        private changes = new Array<{oldLabel:string;newLabel:string;page:org.mycore.mets.model.simple.MCRMetsPage}>();
+        private changes = new Array<{
+            oldLabel: string;
+            newLabel: string;
+            page: org.mycore.mets.model.simple.MCRMetsPage
+        }>();
 
         public doChanges() {
             let changesLeft = true;
@@ -30,7 +34,7 @@ namespace org.mycore.mets.controller.Pagination {
                 changesLeft = this.changes.pop() != null;
             }
 
-            this.calculateChanges().forEach(c=>this.changes.push(c));
+            this.calculateChanges().forEach(c => this.changes.push(c));
         }
 
         public changeType() {
@@ -43,7 +47,7 @@ namespace org.mycore.mets.controller.Pagination {
             }
         }
 
-        changeClicked(page:org.mycore.mets.model.simple.MCRMetsPage, index:number) {
+        changeClicked(page: org.mycore.mets.model.simple.MCRMetsPage, index: number) {
             this.model.begin = index;
         }
 
@@ -59,10 +63,10 @@ namespace org.mycore.mets.controller.Pagination {
                     this.model.reverse
                 );
             } else {
-                changes = this.model.selectedPages.map(()=>"");
+                changes = this.model.selectedPages.map(() => "");
             }
 
-            return this.model.selectedPages.map((page:org.mycore.mets.model.simple.MCRMetsPage, index:number)=> {
+            return this.model.selectedPages.map((page: org.mycore.mets.model.simple.MCRMetsPage, index: number) => {
                 let oldLabel;
                 if (replaceOldLabel) {
                     const pageNumber = (this.model.selectedPagesIndex + 1 + index);
@@ -79,17 +83,17 @@ namespace org.mycore.mets.controller.Pagination {
             });
         }
 
-        public change(){
-            this.$modalInstance.close(this.calculateChanges(false).map((change)=> {
+        public change() {
+            this.$modalInstance.close(this.calculateChanges(false).map((change) => {
                 return new org.mycore.mets.model.state.PageLabelChange(change.page, change.newLabel, change.oldLabel);
             }));
         }
 
-        public abort(){
+        public abort() {
             this.$modalInstance.dismiss();
         }
 
-        public model:PaginationModalModel;
+        public model: PaginationModalModel;
     }
 }
 

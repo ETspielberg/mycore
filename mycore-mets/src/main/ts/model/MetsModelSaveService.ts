@@ -15,7 +15,7 @@ namespace org.mycore.mets.model {
         constructor(private httpService) {
         }
 
-        save(url:string, model:MetsModel, callBack:(success:boolean)=>void) {
+        save(url: string, model: MetsModel, callBack: (success: boolean) => void) {
             const jsonData = MetsModel.toJson(model);
             const promise = this.httpService.post(url, jsonData);
 
@@ -23,7 +23,7 @@ namespace org.mycore.mets.model {
                 callBack(true);
             });
 
-            promise.error(()=> {
+            promise.error(() => {
                 callBack(false);
             });
         }

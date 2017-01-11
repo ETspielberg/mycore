@@ -8,14 +8,14 @@ namespace org.mycore.mets.model {
         constructor(private httpService) {
         }
 
-        load(url:string, callBack:(model:MetsModel)=>void) {
+        load(url: string, callBack: (model: MetsModel) => void) {
             const promise = this.httpService.get(url);
 
             promise.success((metsData) => {
                 callBack(MetsModel.fromJson(metsData));
             });
 
-            promise.error(()=>{
+            promise.error(() => {
                 // TODO: ERROR HANDLING
             });
         }

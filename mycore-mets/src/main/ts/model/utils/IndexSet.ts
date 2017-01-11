@@ -1,21 +1,21 @@
 module org.mycore.mets.model {
 
     export class IndexSet<T> {
-        constructor(private indexingFunction:IndexingFunction<T>) {
+        constructor(private indexingFunction: IndexingFunction<T>) {
             this.privateSetObject = {};
         }
 
-        private privateSetObject:{ [index: string]: T; };
+        private privateSetObject: {[index: string]: T; };
 
-        public add(element:T) {
+        public add(element: T) {
             this.privateSetObject[ this.indexingFunction(element) ] = element;
         }
 
-        public remove(element:T) {
+        public remove(element: T) {
             delete this.privateSetObject[ this.indexingFunction(element) ];
         }
 
-        public getCount():number {
+        public getCount(): number {
             let count = 0;
             for (let i in this.privateSetObject) {
                 if (this.privateSetObject.hasOwnProperty(i)) {
@@ -25,7 +25,7 @@ module org.mycore.mets.model {
             return count;
         }
 
-        public has(key:T) {
+        public has(key: T) {
             return this.indexingFunction(key) in this.privateSetObject;
         }
 
@@ -41,7 +41,7 @@ module org.mycore.mets.model {
     }
 
     export interface IndexingFunction<T> {
-        (T):string;
+        (T): string;
     }
 
 }

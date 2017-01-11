@@ -13,23 +13,22 @@ namespace org.mycore.mets.controller {
 
     export class DefaultPagePresenter implements PagePresenter {
 
-        public init(metsEditorModel:MetsEditorModel) {
-            this.urlPattern = metsEditorModel.configuration.
-                imageLocationPattern.replace("{derivate}", metsEditorModel.metsId);
+        public init(metsEditorModel: MetsEditorModel) {
+            this.urlPattern = metsEditorModel.configuration.imageLocationPattern.replace("{derivate}", metsEditorModel.metsId);
         }
 
-        public getPreviewURL(fileList:Array<MCRMetsFile>) {
-            const href = fileList.filter((f)=>f.use=="MASTER")[0].href;
+        public getPreviewURL(fileList: Array<MCRMetsFile>) {
+            const href = fileList.filter((f) => f.use == "MASTER")[ 0 ].href;
             return this.urlPattern.replace("{image}", href).replace("{quality}", "MID");
         }
 
-        public getImageURL(fileList:Array<MCRMetsFile>) {
-            const href = fileList.filter((f)=>f.use=="MASTER")[0].href;
+        public getImageURL(fileList: Array<MCRMetsFile>) {
+            const href = fileList.filter((f) => f.use == "MASTER")[ 0 ].href;
             return this.urlPattern.replace("{image}", href).replace("{quality}", "MAX");
         }
 
-        private urlPattern:string = null;
-        public currentPage:MCRMetsPage = null;
+        private urlPattern: string = null;
+        public currentPage: MCRMetsPage = null;
     }
 
 

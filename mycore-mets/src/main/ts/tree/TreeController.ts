@@ -1,5 +1,12 @@
 ///<reference path="../../../../typings/angularjs/angular.d.ts"/>
 ///<reference path="../../../../typings/jquery/jquery.d.ts"/>
+///<reference path="../model/simple/MCRMetsSection.ts"/>
+///<reference path="MetsEditorTreeModel.ts"/>
+///<reference path="../state/StateEngine.ts"/>
+///<reference path="../model/simple/MCRMetsSimpleModel.ts"/>
+///<reference path="../model/MetsEditorModel.ts"/>
+///<reference path="../error/ErrorModalModel.ts"/>
+///<reference path="../state/SectionMoveChange.ts"/>
 
 import MCRMetsSection = org.mycore.mets.model.simple.MCRMetsSection;
 import MetsEditorTreeModel = org.mycore.mets.model.MetsEditorTreeModel;
@@ -18,23 +25,23 @@ namespace org.mycore.mets.controller {
                     i18nModel,
                     ngDraggable,
                     private $modal,
-                    editorConfiguration:MetsEditorConfiguration) {
+                    editorConfiguration: MetsEditorConfiguration) {
             this.treeModel = new MetsEditorTreeModel();
             this.messageModel = i18nModel;
             this.metsConfiguration = editorConfiguration;
         }
 
-        private privateChildFieldName:string;
-        private privateParentFieldName:string;
-        private privateErrorModal:any;
+        private privateChildFieldName: string;
+        private privateParentFieldName: string;
+        private privateErrorModal: any;
         private messageModel;
-        private metsConfiguration:MetsEditorConfiguration;
-        public treeModel:MetsEditorTreeModel;
-        private stateEngine:StateEngine;
-        private simpleModel:MCRMetsSimpleModel;
-        private editorModel:MetsEditorModel;
+        private metsConfiguration: MetsEditorConfiguration;
+        public treeModel: MetsEditorTreeModel;
+        private stateEngine: StateEngine;
+        private simpleModel: MCRMetsSimpleModel;
+        private editorModel: MetsEditorModel;
 
-        public init(root:any, childFieldName:string, parentFieldName:string, metsEditorModel:MetsEditorModel) {
+        public init(root: any, childFieldName: string, parentFieldName: string, metsEditorModel: MetsEditorModel) {
             if (root == null || typeof root == "undefined") {
                 throw `invalid
                 root
@@ -63,27 +70,27 @@ namespace org.mycore.mets.controller {
             this.editorModel = metsEditorModel;
         }
 
-        public getChildren(child:any) {
+        public getChildren(child: any) {
             const childList = child[ this.privateChildFieldName ];
             return childList;
         }
 
-        public getChildrenCount(child:any) {
+        public getChildrenCount(child: any) {
             const length = this.getChildren(child).length;
             return length;
         }
 
-        public clickFolder(element:any, event:JQueryMouseEventObject) {
+        public clickFolder(element: any, event: JQueryMouseEventObject) {
             event.stopImmediatePropagation();
             event.stopPropagation();
             this.treeModel.setElementOpen(element, !this.treeModel.getElementOpen(element));
         }
 
-        public buildDropTarget(element:any, position):DropTarget {
+        public buildDropTarget(element: any, position): DropTarget {
             return new DropTarget(element, position);
         }
 
-        public dropSuccess(target:DropTarget, sourceElement:MCRMetsSection, event:JQueryEventObject) {
+        public dropSuccess(target: DropTarget, sourceElement: MCRMetsSection, event: JQueryEventObject) {
             let realTargetElement;
 
             if (target.position == "after" || target.position == "before") {
@@ -123,7 +130,7 @@ namespace org.mycore.mets.controller {
             return true;
         }
 
-        private checkConsistent(path:any, source:any) {
+        private checkConsistent(path: any, source: any) {
             if (path[ this.privateParentFieldName ] == source) {
                 return false;
             } else {

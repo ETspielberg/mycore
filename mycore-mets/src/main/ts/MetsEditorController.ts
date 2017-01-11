@@ -5,17 +5,17 @@ namespace org.mycore.mets.controller {
 
     export class MetsEditorController {
         constructor(private $scope,
-                    private metsEditorModelFactory:MetsEditorModelFactory,
+                    private metsEditorModelFactory: MetsEditorModelFactory,
                     private i18nModel,
                     hotkeys,
                     $timeout,
-                    private metsModelLockService:org.mycore.mets.model.MetsModelLock,
+                    private metsModelLockService: org.mycore.mets.model.MetsModelLock,
                     private $modal,
                     private $window) {
             this.initHotkeys(hotkeys);
 
-            $scope.$on("AddedSection", (event, data)=> {
-                $timeout(()=> {
+            $scope.$on("AddedSection", (event, data) => {
+                $timeout(() => {
                     $scope.$broadcast("editSection", {
                         section : data.addedSection
                     });
@@ -30,7 +30,7 @@ namespace org.mycore.mets.controller {
             hotkeys.add({
                 combo : "ctrl+1",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     this.model.mode = MetsEditorModel.EDITOR_PAGINATION;
                 }
             });
@@ -38,20 +38,20 @@ namespace org.mycore.mets.controller {
             hotkeys.add({
                 combo : "ctrl+2",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     this.model.mode = MetsEditorModel.EDITOR_STRUCTURING;
                 }
             });
 
         }
 
-        public init(parameter:MetsEditorParameter) {
+        public init(parameter: MetsEditorParameter) {
             const emptyCallback = () => {
                 //do nothing
             };
             this.validate(parameter);
             this.model = this.metsEditorModelFactory.getInstance(parameter);
-            this.metsModelLockService.lock(this.model.lockURL, (success:boolean)=> {
+            this.metsModelLockService.lock(this.model.lockURL, (success: boolean) => {
                 if (!success) {
                     let options = {
                         templateUrl : "error/modal.html",
@@ -69,7 +69,7 @@ namespace org.mycore.mets.controller {
                 } else {
                     this.model.locked = true;
 
-                    this.$window.onbeforeunload = ()=>{
+                    this.$window.onbeforeunload = () => {
                         this.metsModelLockService.unlock(this.model.unLockURL);
                         if (!this.model.stateEngine.isServerState()) {
                             return this.i18nModel.messages[ "notSaved" ];
@@ -80,29 +80,29 @@ namespace org.mycore.mets.controller {
 
         }
 
-        public close(){
+        public close() {
             this.$window.close();
         }
 
-        public viewOptionClicked(option:string) {
+        public viewOptionClicked(option: string) {
             this.model.middleView = option;
         }
 
 
-        private validate(parameter:MetsEditorParameter):void {
+        private validate(parameter: MetsEditorParameter): void {
             this.checkParameter("metsId", parameter);
             this.checkParameter("sourceMetsURL", parameter);
             this.checkParameter("targetServletURL", parameter);
 
         }
 
-        private checkParameter(parameterToCheck:string, parameters:MetsEditorParameter) {
+        private checkParameter(parameterToCheck: string, parameters: MetsEditorParameter) {
             if (!(parameterToCheck in parameters) || parameters[ parameterToCheck ] == null) {
                 throw `MetsEditorParameter does not have a valid ${parameterToCheck}`;
             }
         }
 
-        private model:MetsEditorModel;
+        private model: MetsEditorModel;
     }
 
 }

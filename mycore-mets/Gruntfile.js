@@ -139,6 +139,9 @@ module.exports = function (grunt) {
             },
             MetsEditorClient: {
                 src: ['src/main/ts/**/*.ts']
+            },
+            MetsEditorClientTests: {
+                src: ['src/test/ts/**/*.ts']
             }
         },
         html2js: { // Compiles the Angular templates to js

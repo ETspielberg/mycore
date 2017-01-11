@@ -12,20 +12,20 @@ module org.mycore.mets.model {
      * This is the service which loads the mets file and parses it into simple model.
      */
     export class MetsEditorModelFactory {
-        constructor(modelLoader:MetsModelLoader, editorConfiguration:MetsEditorConfiguration) {
+        constructor(modelLoader: MetsModelLoader, editorConfiguration: MetsEditorConfiguration) {
             this.metsModelLoaderService = modelLoader;
             this.metsEditorConfiguration = editorConfiguration;
         }
 
-        private metsModelLoaderService:MetsModelLoader;
-        private metsEditorConfiguration:MetsEditorConfiguration;
+        private metsModelLoaderService: MetsModelLoader;
+        private metsEditorConfiguration: MetsEditorConfiguration;
 
-        public getInstance(metsEditorParameter:MetsEditorParameter):MetsEditorModel {
+        public getInstance(metsEditorParameter: MetsEditorParameter): MetsEditorModel {
             let metsEditorModel = new MetsEditorModel(this.metsEditorConfiguration);
 
             metsEditorModel.metsId = metsEditorParameter.metsId;
             metsEditorModel.targetServlet = metsEditorParameter.targetServletURL;
-            this.metsModelLoaderService.load(metsEditorParameter.sourceMetsURL, (metsModel:MetsModel)=> {
+            this.metsModelLoaderService.load(metsEditorParameter.sourceMetsURL, (metsModel: MetsModel) => {
                 metsEditorModel.onModelLoad(metsModel);
             });
 

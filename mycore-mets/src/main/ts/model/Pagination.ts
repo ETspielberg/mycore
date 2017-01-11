@@ -1,31 +1,27 @@
 namespace org.mycore.mets.model {
     export class Pagination {
 
-        private static
-            regExpTestMethod = function (label) {
-                return this.testExpr.test(label);
-            };
+        private static regExpTestMethod = function (label) {
+            return this.testExpr.test(label);
+        };
 
-        private static
-            suffixRegExprParsing = function rvBegin(label) {
-                const result = this.testExpr.exec(label);
-                return {page : parseInt(result[ 1 ], 10), appendix : result[ 2 ]};
-            };
+        private static suffixRegExprParsing = function rvBegin(label) {
+            const result = this.testExpr.exec(label);
+            return {page : parseInt(result[ 1 ], 10), appendix : result[ 2 ]};
+        };
 
-        private static
-            fromToRegExprParsing = function fromTo(label) {
-                const result = this.testExpr.exec(label);
-                return {
-                    fromRow : parseInt(result[ 1 ], 10),
-                    toRow : parseInt(result[ 2 ], 10)
-                };
+        private static fromToRegExprParsing = function fromTo(label) {
+            const result = this.testExpr.exec(label);
+            return {
+                fromRow : parseInt(result[ 1 ], 10),
+                toRow : parseInt(result[ 2 ], 10)
             };
+        };
 
-        private static
-            prefixRegExprParsing = function rvBegin(label) {
-                const result = this.testExpr.exec(label);
-                return {page : parseInt(result[ 2 ], 10), appendix : result[ 1 ]};
-            };
+        private static prefixRegExprParsing = function rvBegin(label) {
+            const result = this.testExpr.exec(label);
+            return {page : parseInt(result[ 2 ], 10), appendix : result[ 1 ]};
+        };
 
         private static romanVars = {
             UNITS : [ "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" ],
@@ -34,21 +30,21 @@ namespace org.mycore.mets.model {
             NUMERALS : {I : 1, V : 5, X : 10, L : 50, C : 100, D : 500, M : 1000}
         };
 
-        public static getPaginationMethodByName(name:string) {
-            const arrayOfMethodsWithName = Pagination.paginationMethods.filter((pm:PaginationMethod)=>pm.name == name);
+        public static getPaginationMethodByName(name: string) {
+            const arrayOfMethodsWithName = Pagination.paginationMethods.filter((pm: PaginationMethod) => pm.name == name);
             return arrayOfMethodsWithName[ 0 ];
         }
 
-        public static detectPaginationMethodByPageLabel(label:string) {
-            return this.paginationMethods.filter((method)=>method.test(label))[ 0 ] || null;
+        public static detectPaginationMethodByPageLabel(label: string) {
+            return this.paginationMethods.filter((method) => method.test(label))[ 0 ] || null;
         }
 
-        public static getChanges(from:number,
-                                 to:number,
-                                 changed:number,
-                                 changedTo:string,
-                                 method:PaginationMethod,
-                                 reverse:boolean = false) {
+        public static getChanges(from: number,
+                                 to: number,
+                                 changed: number,
+                                 changedTo: string,
+                                 method: PaginationMethod,
+                                 reverse: boolean = false) {
             const changedVal = method.getArabicPageNumber(changedTo);
             const pagination = new Array<string>();
 
@@ -60,7 +56,7 @@ namespace org.mycore.mets.model {
             return pagination;
         }
 
-        public static paginationMethods:Array<PaginationMethod> = <any>[
+        public static paginationMethods: Array<PaginationMethod> = <any> [
             {
                 name : "rectoVerso_lowercase",
                 testExpr : /([0-9]+)([rv])/,
@@ -117,10 +113,10 @@ namespace org.mycore.mets.model {
                 name : "rome",
                 vars : Pagination.romanVars,
                 testExpr : /^m*(?:d?c{0,3}|c[md])(?:l?x{0,3}|x[cl])(?:v?i{0,3}|i[xv])$/,
-                test : function (rome:string) {
+                test : function (rome: string) {
                     return rome != "" && Pagination.regExpTestMethod.apply(this, [ rome ]);
                 },
-                paginate : function (arabic:number) {
+                paginate : function (arabic: number) {
                     // break down number into units, tens, hundreds, thousands
                     let digits = String(+arabic).split(""),
                         count = 3,
@@ -149,7 +145,7 @@ namespace org.mycore.mets.model {
                     return roman.toLowerCase();
 
                 },
-                getArabicPageNumber : function (rome:string) {
+                getArabicPageNumber : function (rome: string) {
                     const token = /[mdlv]|c[md]?|x[cl]?|i[xv]?/g;
                     const key = {
                         m : 1000,
@@ -184,10 +180,10 @@ namespace org.mycore.mets.model {
                 name : "rome_uppercase",
                 vars : Pagination.romanVars,
                 testExpr : /^M*(?:D?C{0,3}|C[MD])(?:L?X{0,3}|X[CL])(?:V?I{0,3}|I[XV])$/,
-                test : function (rome:string) {
+                test : function (rome: string) {
                     return rome != "" && Pagination.regExpTestMethod.apply(this, [ rome ]);
                 },
-                paginate : function (arabic:number) {
+                paginate : function (arabic: number) {
                     // break down number into units, tens, hundreds, thousands
                     let digits = String(+arabic).split(""),
                         count = 3,
@@ -216,7 +212,7 @@ namespace org.mycore.mets.model {
                     return roman.toUpperCase();
 
                 },
-                getArabicPageNumber : function (rome:string) {
+                getArabicPageNumber : function (rome: string) {
                     const token = /[MDLV]|C[MD]?|X[CL]?|I[XV]?/g;
                     const key = {
                         M : 1000,
@@ -251,7 +247,7 @@ namespace org.mycore.mets.model {
                 testExpr : /^Sp\. ([0-9]+)-([0-9]+)$/,
                 test : Pagination.regExpTestMethod,
                 getArabicPageNumber : function (pageFromTo) {
-                    const fromToRegExprParsing = Pagination.fromToRegExprParsing.apply(this, [pageFromTo]);
+                    const fromToRegExprParsing = Pagination.fromToRegExprParsing.apply(this, [ pageFromTo ]);
                     const rowsPerPage = (fromToRegExprParsing.toRow - fromToRegExprParsing.fromRow) + 1;
                     const actualPageNumber = fromToRegExprParsing.toRow / rowsPerPage;
 
@@ -261,17 +257,17 @@ namespace org.mycore.mets.model {
 
                     return actualPageNumber;
                 },
-                paginate : function (arabic:number) {
-                    return `Sp. ${(arabic * 2) - 1}-${arabic*2}`;
+                paginate : function (arabic: number) {
+                    return `Sp. ${(arabic * 2) - 1}-${arabic * 2}`;
                 }
             } ];
     }
 
 
     export interface PaginationMethod {
-        name:string;
-        test(label:string):boolean;
-        getArabicPageNumber(val:string):number;
-        paginate(val:number):string;
+        name: string;
+        test(label: string): boolean;
+        getArabicPageNumber(val: string): number;
+        paginate(val: number): string;
     }
 }

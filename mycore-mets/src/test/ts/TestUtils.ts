@@ -105,16 +105,15 @@ module org.mycore.mets.tests {
         }
 
 
-
         static createDefaultModel() {
-            var metsEditorModel = new org.mycore.mets.model.MetsEditorModel(<any>{metsId : "test-mets"});
+            let metsEditorModel = new org.mycore.mets.model.MetsEditorModel(<any> {metsId : "test-mets"});
             metsEditorModel.onModelLoad(org.mycore.mets.model.simple.MCRMetsSimpleModel.fromJson(TestUtils.createJson()));
             return metsEditorModel;
         }
 
         static getWords(w) {
             return w.split(" ").map(
-                (w)=>w.replace(".", "")
+                (w) => w.replace(".", "")
                     .replace("(", "")
                     .replace((")"), "")
             );

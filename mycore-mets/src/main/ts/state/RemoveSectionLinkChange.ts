@@ -1,20 +1,20 @@
 namespace org.mycore.mets.model.state {
     export class RemoveSectionLinkChange extends ModelChange {
-        constructor(private section:simple.MCRMetsSection, private page:simple.MCRMetsPage) {
+        constructor(private section: simple.MCRMetsSection, private page: simple.MCRMetsPage) {
             super();
             this.pageLabel = page.orderLabel;
             this.sectionLabel = this.section.label;
         }
 
-        private pageLabel:string;
-        private sectionLabel:string;
-        private addedTo:MCRMetsSection;
+        private pageLabel: string;
+        private sectionLabel: string;
+        private addedTo: MCRMetsSection;
 
         private getRoot(section = this.section) {
             return (section.parent != null) ? this.getRoot(section.parent) : section;
         }
 
-        private isPageLinked(root:simple.MCRMetsSection, page:simple.MCRMetsPage) {
+        private isPageLinked(root: simple.MCRMetsSection, page: simple.MCRMetsPage) {
             let thisLinked = root.linkedPages.indexOf(page);
             if (thisLinked) {
                 return true;
@@ -51,7 +51,7 @@ namespace org.mycore.mets.model.state {
             }
         }
 
-        public getDescription(messages:any):string {
+        public getDescription(messages: any): string {
             return (messages[ "RemoveSectionLinkChangeDescription" ] || "???RemoveSectionLinkChange???")
                 .replace("{pageLabel}", this.pageLabel)
                 .replace("{sectionLabel}", this.sectionLabel);

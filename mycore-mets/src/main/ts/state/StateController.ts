@@ -10,36 +10,36 @@ namespace org.mycore.mets.model.state {
             hotkeys.add({
                 combo : "ctrl+z",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     this.backClicked();
                 }
             });
             hotkeys.add({
                 combo : "command+z",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     this.backClicked();
                 }
             });
             hotkeys.add({
                 combo : "cmd+shift+z",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     this.nextClicked();
                 }
             });
             hotkeys.add({
                 combo : "command+shift+z",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     this.nextClicked();
                 }
             });
         }
 
-        private stateEngine:StateEngine;
+        private stateEngine: StateEngine;
 
-        public init(stateEngine:StateEngine) {
+        public init(stateEngine: StateEngine) {
             this.stateEngine = stateEngine;
         }
 

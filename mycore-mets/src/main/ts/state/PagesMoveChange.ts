@@ -3,9 +3,9 @@
 namespace org.mycore.mets.model.state {
     export class PagesMoveChange extends ModelChange {
 
-        constructor(private pageList:Array<model.simple.MCRMetsPage>,
-                    private range:PagesMoveChangeRange,
-                    private moveTo:PagesMoveChangeDestination) {
+        constructor(private pageList: Array<model.simple.MCRMetsPage>,
+                    private range: PagesMoveChangeRange,
+                    private moveTo: PagesMoveChangeDestination) {
             super();
 
             const moveFromIndex = this.pageList.indexOf(range.from);
@@ -34,11 +34,11 @@ namespace org.mycore.mets.model.state {
             this.moveToLabel = moveTo.element.orderLabel || alternativeLabel;
         }
 
-        private rangeFromLabel:string;
-        private rangeToLabel:string;
-        private moveToLabel:string;
+        private rangeFromLabel: string;
+        private rangeToLabel: string;
+        private moveToLabel: string;
 
-        private moveFrom:PagesMoveChangeDestination;
+        private moveFrom: PagesMoveChangeDestination;
 
         public doChange() {
             PagesMoveChange.copy(this.pageList, this.range, this.moveTo);
@@ -48,7 +48,7 @@ namespace org.mycore.mets.model.state {
             PagesMoveChange.copy(this.pageList, this.range, this.moveFrom);
         }
 
-        public getDescription(messages:any) {
+        public getDescription(messages: any) {
             return (messages[ "PagesMoveChangeDescription" ]
                 .replace("{range.from}", this.rangeFromLabel) || "???PagesMoveChangeDescription???")
                 .replace("{range.to}", this.rangeToLabel)
@@ -56,12 +56,12 @@ namespace org.mycore.mets.model.state {
                 .replace("{position}", this.moveTo.before ? messages[ "before" ] : messages[ "after" ]);
         }
 
-        private static copy(pl:Array<model.simple.MCRMetsPage>, range:PagesMoveChangeRange, to:PagesMoveChangeDestination) {
+        private static copy(pl: Array<model.simple.MCRMetsPage>, range: PagesMoveChangeRange, to: PagesMoveChangeDestination) {
             const startIndex = pl.indexOf(range.from);
             const count = this.getRangeCount(pl, range, startIndex);
             const pages = pl.splice(startIndex, count);
             const destinationIndex = pl.indexOf(to.element) + (to.before ? 0 : 1 );
-            const args = (<any>[ destinationIndex, 0 ]).concat(pages);
+            const args = (<any> [ destinationIndex, 0 ]).concat(pages);
             pl.splice.apply(pl, args);
         }
 
@@ -72,12 +72,12 @@ namespace org.mycore.mets.model.state {
 
     }
     export interface PagesMoveChangeDestination {
-        before:boolean;
-        element:model.simple.MCRMetsPage;
+        before: boolean;
+        element: model.simple.MCRMetsPage;
     }
 
     export interface PagesMoveChangeRange {
-        from:model.simple.MCRMetsPage;
-        to:model.simple.MCRMetsPage;
+        from: model.simple.MCRMetsPage;
+        to: model.simple.MCRMetsPage;
     }
 }

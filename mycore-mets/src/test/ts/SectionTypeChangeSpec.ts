@@ -1,28 +1,29 @@
 ///<reference path="../../../typings/jasmine/jasmine.d.ts"/>
+///<reference path="TestUtils.ts"/>
 
 module org.mycore.mets.tests {
-    describe("SectionTypeChange", ()=> {
+    describe("SectionTypeChange", () => {
 
-        var model:org.mycore.mets.model.MetsEditorModel;
-        var simpleChange:org.mycore.mets.model.state.SectionTypeChange;
+        let model: org.mycore.mets.model.MetsEditorModel;
+        let simpleChange: org.mycore.mets.model.state.SectionTypeChange;
 
-        var newType = "new_section_type";
-        var oldType;
-        var emptyMessages = {};
+        let newType = "new_section_type";
+        let oldType;
+        let emptyMessages = {};
 
-        beforeEach(()=> {
+        beforeEach(() => {
             model = TestUtils.createDefaultModel();
             simpleChange = new org.mycore.mets.model.state.SectionTypeChange(model.metsModel.rootSection, newType);
             oldType = model.metsModel.rootSection.type;
             expect(oldType).toBeDefined();
         });
 
-        it("can be executed", ()=> {
+        it("can be executed", () => {
             model.stateEngine.changeModel(simpleChange);
             expect(model.metsModel.rootSection.type).toBe(newType);
         });
 
-        it("can be executed and reverted", ()=> {
+        it("can be executed and reverted", () => {
             model.stateEngine.changeModel(simpleChange);
             expect(model.metsModel.rootSection.type).toBe(newType);
             expect(model.stateEngine.canBack).toBeTruthy();
@@ -30,8 +31,8 @@ module org.mycore.mets.tests {
             expect(model.metsModel.rootSection.type).toBe(oldType);
         });
 
-        it("has a description", ()=> {
-            var changeDescription = TestUtils.getWords(simpleChange.getDescription(emptyMessages));
+        it("has a description", () => {
+            let changeDescription = TestUtils.getWords(simpleChange.getDescription(emptyMessages));
             expect(changeDescription).toContain(newType);
             expect(changeDescription).toContain(oldType);
             expect(changeDescription).toContain(model.metsModel.rootSection.label);

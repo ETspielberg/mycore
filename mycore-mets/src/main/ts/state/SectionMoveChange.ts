@@ -1,9 +1,10 @@
 ///<reference path="ModelChange.ts"/>
 ///<reference path="../model/simple/MCRMetsSection.ts"/>
 ///<reference path="../tree/MetsEditorTreeModel.ts"/>
+
 namespace org.mycore.mets.model.state {
     export class SectionMoveChange extends ModelChange {
-        constructor(private section:simple.MCRMetsSection, private target:DropTarget) {
+        constructor(private section: simple.MCRMetsSection, private target: DropTarget) {
             super();
             this.previousParent = section.parent;
             this.previousPositionInParent = this.previousParent.metsSectionList.indexOf(section);
@@ -12,12 +13,12 @@ namespace org.mycore.mets.model.state {
             this.targetLabel = target.element.label;
         }
 
-        private previousParent:simple.MCRMetsSection;
-        private previousPositionInParent:number;
+        private previousParent: simple.MCRMetsSection;
+        private previousPositionInParent: number;
 
-        private previousParentLabel:string;
-        private newParentLabel:string;
-        private targetLabel:string;
+        private previousParentLabel: string;
+        private newParentLabel: string;
+        private targetLabel: string;
 
         public doChange() {
             const realTargetSection = this.getRealTargetSection();
@@ -45,7 +46,7 @@ namespace org.mycore.mets.model.state {
             this.previousParent.addSectionIndexPosition(this.section, this.previousPositionInParent);
         }
 
-        public getDescription(messages:any):string {
+        public getDescription(messages: any): string {
             const targetPos = messages[ this.target.position ] || this.target.position;
             const description = messages[ "SectionMoveChangeDescription" ] ||
                 "???SectionMoveChangeDescription??? {prevParent} {realTarget} {targetPos} {targetLabel}";

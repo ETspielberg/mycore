@@ -1,5 +1,8 @@
+///<reference path="../../../../typings/jquery/jquery.d.ts"/>
+///<reference path="ErrorModalModel.ts" />
+
 namespace org.mycore.mets.controller {
-    export class ErrorModalController  {
+    export class ErrorModalController {
         constructor($scope, private $modalInstance, public i18nModel) {
             $scope.ctrl = this;
             this.errorModel = $modalInstance.errorModel;
@@ -7,7 +10,7 @@ namespace org.mycore.mets.controller {
 
         public errorModel: org.mycore.mets.model.ErrorModalModel;
 
-        public okayClicked(event:JQueryMouseEventObject) {
+        public okayClicked(event: JQueryMouseEventObject) {
             this.$modalInstance.close({});
         }
 

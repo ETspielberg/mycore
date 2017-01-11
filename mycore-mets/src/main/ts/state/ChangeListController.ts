@@ -8,9 +8,9 @@ namespace org.mycore.mets.controller {
             this.modalInstance = $modalInstance;
         }
 
-        private modalInstance:any;
+        private modalInstance: any;
 
-        public get changes():Array<model.state.ModelChange> {
+        public get changes(): Array<model.state.ModelChange> {
             return this.modalInstance.changes;
         }
 

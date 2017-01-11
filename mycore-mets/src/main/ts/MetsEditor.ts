@@ -141,11 +141,11 @@ angular.module("MetsEditorApp");
 angular.module("MetsEditorApp").controller("MetsEditorPageListController",
     [ "ngDraggable", "$timeout", "$modal", "hotkeys", "MetsEditorI18NModel", org.mycore.mets.controller.PageListController ]);
 
-angular.module("MetsEditorApp").directive("jumpToElement", ["$timeout", function ($timeout) {
+angular.module("MetsEditorApp").directive("jumpToElement", [ "$timeout", function ($timeout) {
     return {
         restrict : "A",
         link : function (scope, iElement, attr) {
-            const findOverflowScrollParent = (elem)=> {
+            const findOverflowScrollParent = (elem) => {
                 const ngElement = elem;
                 if (ngElement.css("overflow") == "scroll" || ngElement.css("overflow-y") == "scroll") {
                     return ngElement;
@@ -178,7 +178,7 @@ angular.module("MetsEditorApp").directive("jumpToElement", ["$timeout", function
             };
 
             const checkAndJump = function () {
-                if ((<any>attr).jumpToElement == "true") {
+                if ((<any> attr).jumpToElement == "true") {
                     jumpToElement();
                 }
             };
@@ -189,7 +189,7 @@ angular.module("MetsEditorApp").directive("jumpToElement", ["$timeout", function
             });
         }
     };
-}]);
+} ]);
 
 angular.module("MetsEditorApp").controller("MetsEditorPageController",
     [ "MetsEditorI18NModel", org.mycore.mets.controller.PageController ]);

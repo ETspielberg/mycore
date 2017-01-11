@@ -15,16 +15,16 @@ namespace org.mycore.mets.controller {
             hotkeys.add({
                 combo : "ctrl+p",
                 description : "",
-                callback : ()=> {
+                callback : () => {
                     this.paginationClicked();
                 }
             });
         }
 
-        private metsEditorModel:MetsEditorModel;
+        private metsEditorModel: MetsEditorModel;
         private changeListModalInstance;
 
-        public init(metsEditorModel:MetsEditorModel) {
+        public init(metsEditorModel: MetsEditorModel) {
             this.metsEditorModel = metsEditorModel;
         }
 
@@ -41,9 +41,9 @@ namespace org.mycore.mets.controller {
 
             this.changeListModalInstance = this.$modal.open(options);
             this.changeListModalInstance.model = new org.mycore.mets.model.PaginationModalModel(this.i18nModel.messages,
-                this.metsEditorModel.metsModel.metsPageList.filter((t, index)=> {
+                this.metsEditorModel.metsModel.metsPageList.filter((t, index) => {
                     return (this.metsEditorModel.pageSelection.from != null) ?
-                    index >= this.metsEditorModel.pageSelection.from && index <= this.metsEditorModel.pageSelection.to :
+                        index >= this.metsEditorModel.pageSelection.from && index <= this.metsEditorModel.pageSelection.to :
                         true;
                 }),
                 this.metsEditorModel.pageSelection.from,
@@ -51,9 +51,9 @@ namespace org.mycore.mets.controller {
                 method,
                 value);
 
-            this.changeListModalInstance.result.then((lChanges:Array<org.mycore.mets.model.state.PageLabelChange>)=> {
+            this.changeListModalInstance.result.then((lChanges: Array<org.mycore.mets.model.state.PageLabelChange>) => {
                 this.metsEditorModel.stateEngine.changeModel(new org.mycore.mets.model.state.BatchChange(lChanges));
-            }, ()=> {
+            }, () => {
                 // Dismiss
             });
 

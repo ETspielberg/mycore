@@ -4,16 +4,16 @@ namespace org.mycore.mets.controller {
     import MCRMetsSection = org.mycore.mets.model.simple.MCRMetsSection;
 
     export interface StartEditLabel {
-        ofSection:MCRMetsSection;
+        ofSection: MCRMetsSection;
     }
 
     export interface EditLabelStarted {
-        ofSection:MCRMetsSection;
+        ofSection: MCRMetsSection;
     }
 
     export interface SectionAdded {
-        parent:MCRMetsSection;
-        addedSection:MCRMetsSection;
+        parent: MCRMetsSection;
+        addedSection: MCRMetsSection;
     }
 
 }

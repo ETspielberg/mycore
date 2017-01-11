@@ -14,17 +14,21 @@ namespace org.mycore.mets.controller {
             this.messages = i18NModel.messages;
         }
 
-        private stateMachine:StateEngine;
+        private stateMachine: StateEngine;
         private edit = {label : null};
-        private metsEditorModel:MetsEditorModel;
-        private urlPrefix:string;
-        private imageLocation:string;
+        private metsEditorModel: MetsEditorModel;
+        private urlPrefix: string;
+        private imageLocation: string;
         public messages;
-        public page:MCRMetsPage;
-        public thumbnail:boolean = false;
-        public editable:boolean;
+        public page: MCRMetsPage;
+        public thumbnail: boolean = false;
+        public editable: boolean;
 
-        public init(page:MCRMetsPage, stateMachine:StateEngine, metsEditorModel:MetsEditorModel, editable:boolean = true) {
+        public init(page: MCRMetsPage,
+                    stateMachine: StateEngine,
+                    metsEditorModel: MetsEditorModel,
+                    editable: boolean = true) {
+
             this.page = page;
             this.stateMachine = stateMachine;
             this.metsEditorModel = metsEditorModel;
@@ -32,15 +36,15 @@ namespace org.mycore.mets.controller {
             this.imageLocation = metsEditorModel.configuration.imageLocationPattern
                 .replace("{quality}", "MIN")
                 .replace("{derivate}", metsEditorModel.metsId)
-                .replace("{image}", this.getFiles().filter((f)=>f.use=="MASTER")[0].href);
+                .replace("{image}", this.getFiles().filter((f) => f.use == "MASTER")[ 0 ].href);
         }
 
-        private changeLabel(to:string) {
+        private changeLabel(to: string) {
             const change = new org.mycore.mets.model.state.PageLabelChange(this.page, to, this.page.orderLabel);
             this.stateMachine.changeModel(change);
         }
 
-        public removePagination(me:JQueryMouseEventObject){
+        public removePagination(me: JQueryMouseEventObject) {
             let pageLabelChange = new org.mycore.mets.model.state.PageLabelChange(this.page, null, this.page.orderLabel);
             this.stateMachine.changeModel(pageLabelChange);
             me.preventDefault();
@@ -56,12 +60,12 @@ namespace org.mycore.mets.controller {
             return this.page.fileList;
         }
 
-        public editInputClicked(event:JQueryMouseEventObject) {
+        public editInputClicked(event: JQueryMouseEventObject) {
             event.stopPropagation();
             event.stopImmediatePropagation();
         }
 
-        public editLabelKeyUp(keyEvent:JQueryKeyEventObject) {
+        public editLabelKeyUp(keyEvent: JQueryKeyEventObject) {
             keyEvent.stopImmediatePropagation();
             keyEvent.stopPropagation();
 
@@ -77,8 +81,8 @@ namespace org.mycore.mets.controller {
             }
         }
 
-        private throwEdit(event?:JQueryEventObject) {
-            if(typeof event != "undefined"){
+        private throwEdit(event?: JQueryEventObject) {
+            if (typeof event != "undefined") {
                 event.stopImmediatePropagation();
                 event.stopPropagation();
             }
@@ -86,8 +90,8 @@ namespace org.mycore.mets.controller {
             this.edit.label = null;
         }
 
-        private applyEdit(event?:JQueryEventObject) {
-            if(typeof event != "undefined"){
+        private applyEdit(event?: JQueryEventObject) {
+            if (typeof event != "undefined") {
                 event.stopImmediatePropagation();
                 event.stopPropagation();
             }
@@ -98,7 +102,7 @@ namespace org.mycore.mets.controller {
             }
         }
 
-        private isValidLabel(label:string) {
+        private isValidLabel(label: string) {
             return label != null && label.trim().length > 0;
         }
 
@@ -106,7 +110,7 @@ namespace org.mycore.mets.controller {
             this.edit.label = this.page.orderLabel || "";
         }
 
-        public editLabel(clickEvent:JQueryMouseEventObject) {
+        public editLabel(clickEvent: JQueryMouseEventObject) {
             this.startEditLabel();
             clickEvent.stopPropagation();
             clickEvent.preventDefault();
