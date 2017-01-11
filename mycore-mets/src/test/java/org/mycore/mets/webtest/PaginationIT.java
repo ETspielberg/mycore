@@ -3,6 +3,7 @@
  */
 package org.mycore.mets.webtest;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.mycore.common.selenium.drivers.MCRWebdriverWrapper;
 import org.mycore.common.selenium.util.MCRBy;
@@ -17,15 +18,17 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class PaginationIT extends MetsEditorTestBase {
 
+    private static final String TEST_STRING = "test123";
+
     @Test
     public void setPagination() {
         WebDriver webDriver = getDriver();
         WebElement row = webDriver.findElement(MCRBy.partialText("perthes_1855_0001.jpg")).findElement(
             By.xpath("ancestor::tr"));
         row.findElement(By.xpath("//button[@title=\"???editPagination???\"]")).click();
-        row.findElement(By.xpath("//input")).sendKeys("test123");
+        row.findElement(By.xpath("//input")).sendKeys(TEST_STRING);
         row.findElement(By.xpath("//button[@title=\"???paginationChange???\"]")).click();
-        row.findElement(MCRBy.partialText("test123"));
+        Assert.assertNotNull(row.findElement(MCRBy.partialText(TEST_STRING)));
     }
 
     @Test
@@ -34,10 +37,9 @@ public class PaginationIT extends MetsEditorTestBase {
         WebElement row = webDriver.waitAndFindElement(MCRBy.partialText("perthes_1855_0001.jpg")).findElement(
             By.xpath("ancestor::tr"));
         row.findElement(By.xpath("//button[@title=\"???editPagination???\"]")).click();
-        row.findElement(By.xpath("//input")).sendKeys("test123");
+        row.findElement(By.xpath("//input")).sendKeys(TEST_STRING);
         row.findElement(By.xpath("//button[@title=\"???paginationAbort???\"]")).click();
-        if (!row.findElements(MCRBy.partialText("test123")).isEmpty())
-            throw new AssertionError("pagination should not be set!");
+        Assert.assertTrue("Pagination should not be set!",row.findElements(MCRBy.partialText(TEST_STRING)).isEmpty());
     }
 
     @Test
@@ -53,8 +55,8 @@ public class PaginationIT extends MetsEditorTestBase {
         Select select = new Select(webDriver.findElement(By.tagName("select")));
         select.selectByVisibleText("???rectoVerso_lowercase???");
         webDriver.waitAndFindElement(By.xpath("//button[contains(text(),\"???paginationChange???\")]")).click();
-        webDriver.waitAndFindElement(MCRBy.partialText("1v"));
-        webDriver.waitAndFindElement(MCRBy.partialText("18r"));
+        Assert.assertNotNull(webDriver.waitAndFindElement(MCRBy.partialText("1v")));
+        Assert.assertNotNull(webDriver.waitAndFindElement(MCRBy.partialText("18r")));
     }
 
 
