@@ -35,7 +35,7 @@ before_script:
   - sleep 3
   - eval "$(ssh-agent -s)"
   - ssh-add <(echo "$SSH_KEY"| base64 --decode )
-  - unset $SSH_KEY
+  - unset SSH_KEY
 script:
   - mkdir ${HOME}/tmp
   - export TMPDIR="${HOME}/tmp"
