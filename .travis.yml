@@ -33,8 +33,6 @@ before_install:
 before_script:
   - export DISPLAY=:99.0
   - sleep 3
-  - eval "$(ssh-agent -s)"
-  - ssh-add <(echo "$SSH_KEY"| base64 --decode )
 script:
   - mkdir ${HOME}/tmp
   - export TMPDIR="${HOME}/tmp"
