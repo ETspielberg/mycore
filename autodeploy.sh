@@ -7,12 +7,12 @@ git clone $2 ./autodeploy
 cd ./autodeploy
 git branch $1
 git checkout $1
+echo -e "teste README.md\nextraText" > README.md
 cd ../
 
 mkdir -p autodeploy/mycore-viewer/failsafe-reports/
 cp -r mycore-viewer/target/failsafe-reports/ autodeploy/mycore-viewer/failsafe-reports/
 cp -r mycore-viewer/target/result/screenshots/ autodeploy/mycore-viewer/screenshots
-echo -e "teste RDEAME.md\nextraText" > README.md
 
 cd ./autodeploy
 git add .
