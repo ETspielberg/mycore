@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #$1 should be the BranchID
-#$2 should be the repository e.g. https://github.com/paschty/Test_Deploy_Test.git
+#$2 should be the repository e.g. https://github.com/MyCoRe-Travis/test_artifacts.git
 
 git clone $2 ./autodeploy
 cd ./autodeploy
