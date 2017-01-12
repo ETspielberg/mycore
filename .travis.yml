@@ -35,10 +35,9 @@ before_script:
   - sleep 3
   - eval "$(ssh-agent -s)"
   - ssh-add <(echo "$SSH_KEY"| base64 --decode )
-  - unset SSH_KEY
 script:
   - mkdir ${HOME}/tmp
   - export TMPDIR="${HOME}/tmp"
   - mvn -B -Plocal-testing,!standard-with-extra-repos clean install -Dwebdriver.firefox.bin=${FIREFOX_BIN} && mvn -B javadoc:javadoc && mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DfailOnMissingReportFile=false
 after_script:
-  - sh autodeploy.sh "$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT" https://github.com/paschty/Test_Deploy_Test.git
+  - sh autodeploy.sh "$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT" "https://paschty:$GITHUB_TOKEN@github.com/paschty/Test_Deploy_Test.git"
