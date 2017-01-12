@@ -7,7 +7,7 @@ git clone $2 ./autodeploy
 cd ./autodeploy
 git branch $1
 git checkout $1
-echo -e "teste README.md\nextraText" > README.md
+echo "Travis: https://travis-ci.org/MyCoRe-Org/mycore/builds/$TRAVIS_BUILD_ID Mycore-Pull: https://github.com/MyCoRe-Org/mycore/pull/$TRAVIS_PULL_REQUEST" > README.md
 cd ../
 
 mkdir -p autodeploy/mycore-viewer/failsafe-reports/
