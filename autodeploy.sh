@@ -7,7 +7,7 @@ git clone $2 ./autodeploy
 cd ./autodeploy
 git branch $1
 git checkout $1
-printf "Travis: https://travis-ci.org/MyCoRe-Org/mycore/builds/$TRAVIS_BUILD_ID \nMycore-Pull: https://github.com/MyCoRe-Org/mycore/pull/$TRAVIS_PULL_REQUEST \nCommit: https://github.com/MyCoRe-Org/mycore/commit/$TRAVIS_COMMIT" > README.md
+printf "Travis: https://travis-ci.org/MyCoRe-Org/mycore/builds/$TRAVIS_BUILD_ID \n\nMycore-Pull: https://github.com/MyCoRe-Org/mycore/pull/$TRAVIS_PULL_REQUEST \n\nCommit: https://github.com/MyCoRe-Org/mycore/commit/$TRAVIS_COMMIT" > README.md
 cd ../
 
 mkdir -p autodeploy/mycore-viewer/failsafe-reports/
