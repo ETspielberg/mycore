@@ -18,3 +18,10 @@ cd ./autodeploy
 git add .
 git commit -m "adding test results"
 git push -f --set-upstream origin $1
+
+SAVE=2
+
+FIRST=$(( $TRAVIS_BUILD_ID - $SAVE ))
+PROTECT=$(seq $FIRST $TRAVIS_BUILD_ID)
+
+git for-each-ref --format='git push origin --delete %(refname)' refs/remotes/origin|grep -v $(echo $PROTECT |sed -e 's|\(.*\)|refs/remotes/origin/\1|g'|xargs -I repl echo -n repl"\\|" && echo -n 'refs/remotes/origin/HEAD\|refs/remotes/origin/master')|sed -e 's|refs/remotes/origin/||' | eval
