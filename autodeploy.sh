@@ -19,7 +19,7 @@ git add .
 git commit -m "adding test results"
 git push -f --set-upstream origin $1
 
-SAVE=2
+SAVE=1
 
 FIRST=$(( TRAVIS_BUILD_ID - SAVE ))
 PROTECT=$(seq $FIRST $TRAVIS_BUILD_ID)
