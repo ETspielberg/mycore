@@ -8,13 +8,6 @@ cd ./autodeploy
 git branch $1
 git checkout $1
 printf "Travis: https://travis-ci.org/MyCoRe-Org/mycore/builds/$TRAVIS_BUILD_ID \n\nMycore-Pull: https://github.com/MyCoRe-Org/mycore/pull/$TRAVIS_PULL_REQUEST \n\nCommit: https://github.com/MyCoRe-Org/mycore/commit/$TRAVIS_COMMIT" > README.md
-SAVE=2
-
-FIRST=$(( TRAVIS_BUILD_NUMBER - SAVE ))
-PROTECT=$(i=$FIRST; while [ $i -le $TRAVIS_BUILD_NUMBER ]; do echo $i; i=$((i+1)); done)
-
-printf "$PROTECT" > text2.txt
-printf "$(git for-each-ref --format='git push origin --delete %(refname)' refs/remotes/origin|grep -v $(echo "$PROTECT" |sed -e 's|\(.*\)|refs/remotes/origin/\1|g'|xargs -I repl echo -n repl"\\|" && echo -n 'refs/remotes/origin/HEAD\|refs/remotes/origin/master')|sed -e 's|refs/remotes/origin/||')" > text.txt
 cd ../
 
 mkdir -p autodeploy/mycore-viewer/failsafe-reports/
@@ -26,9 +19,9 @@ git add .
 git commit -m "adding test results"
 git push -f --set-upstream origin $1
 
-#SAVE=2
+SAVE=2
 
-#FIRST=$(( TRAVIS_BUILD_ID - SAVE ))
-#PROTECT=$(i=$FIRST; while [ $i -le $TRAVIS_BUILD_ID ]; do echo $i; i=$((i+1)); done)
+FIRST=$(( TRAVIS_BUILD_NUMBER - SAVE ))
+PROTECT=$(i=$FIRST; while [ $i -le $TRAVIS_BUILD_NUMBER ]; do echo $i; i=$((i+1)); done)
 
-#eval "$(git for-each-ref --shell --format='git push origin --delete %(refname)' refs/remotes/origin|grep -v $(echo "$PROTECT" |sed -e 's|\(.*\)|refs/remotes/origin/\1|g'|xargs -I repl echo -n repl"\\|" && echo -n 'refs/remotes/origin/HEAD\|refs/remotes/origin/master')|sed -e 's|refs/remotes/origin/||')"
+eval "$(git for-each-ref --shell --format='git push origin --delete %(refname)' refs/remotes/origin|grep -v $(echo "$PROTECT" |sed -e 's|\(.*\)|refs/remotes/origin/\1|g'|xargs -I repl echo -n repl"\\|" && echo -n 'refs/remotes/origin/HEAD\|refs/remotes/origin/master')|sed -e 's|refs/remotes/origin/||')"
