@@ -24,6 +24,4 @@ SAVE=2
 FIRST=$(( TRAVIS_BUILD_ID - SAVE ))
 PROTECT=$(seq $FIRST $TRAVIS_BUILD_ID)
 
-EVAL=`git for-each-ref --shell --format='git push origin --delete %(refname)' refs/remotes/origin|grep -v $(echo "$PROTECT" |sed -e 's|\(.*\)|refs/remotes/origin/\1|g'|xargs -I repl echo -n repl"\\|" && echo -n 'refs/remotes/origin/HEAD\|refs/remotes/origin/master')|sed -e 's|refs/remotes/origin/||'`
-
-eval "$EVAL"
+eval "$(git for-each-ref --shell --format='git push origin --delete %(refname)' refs/remotes/origin|grep -v $(for((i=$FIRST; i<=$TRAVIS_BUILD_ID; i++)); do echo $i; done |sed -e 's|\(.*\)|refs/remotes/origin/\1|g'|xargs -I repl echo -n repl"\\|" && echo -n 'refs/remotes/origin/HEAD\|refs/remotes/origin/master')|sed -e 's|refs/remotes/origin/||')"
