@@ -22,6 +22,6 @@ git push -f --set-upstream origin $1
 SAVE=2
 
 FIRST=$(( TRAVIS_BUILD_ID - SAVE ))
-PROTECT=$(seq $FIRST $TRAVIS_BUILD_ID)
+PROTECT=$(i=$FIRST; while [ $i -le $TRAVIS_BUILD_ID ]; do echo $i; i=$((i+1)); done)
 
-eval "$(git for-each-ref --shell --format='git push origin --delete %(refname)' refs/remotes/origin|grep -v $(for((i=$FIRST; i<=$TRAVIS_BUILD_ID; i++)); do echo $i; done |sed -e 's|\(.*\)|refs/remotes/origin/\1|g'|xargs -I repl echo -n repl"\\|" && echo -n 'refs/remotes/origin/HEAD\|refs/remotes/origin/master')|sed -e 's|refs/remotes/origin/||')"
+eval "$(git for-each-ref --shell --format='git push origin --delete %(refname)' refs/remotes/origin|grep -v $(echo "$PROTECT" |sed -e 's|\(.*\)|refs/remotes/origin/\1|g'|xargs -I repl echo -n repl"\\|" && echo -n 'refs/remotes/origin/HEAD\|refs/remotes/origin/master')|sed -e 's|refs/remotes/origin/||')"
